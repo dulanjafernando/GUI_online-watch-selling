@@ -1,0 +1,207 @@
+/* Admin Page Styles */
+.admin-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 90px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-item-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: block;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .add-item-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Admin Page List Styles */
+  .admin-page-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 250px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .card-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px; /* Adjust the height of the card */
+  }
+  
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+  
+  .card-header h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .price {
+    font-size: 25px;
+    color: #c80c0c;
+    margin-bottom: 15px;
+  }
+  
+  .card-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .card-buttons .delete-button {
+    background-color: #1926dd;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    
+  }
+  
+  .card-buttons .edit-button {
+    background-color: #e3243d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    
+  }
+  
+  .card-buttons .delete-button:hover {
+    background-color: #4CAF50;
+  }
+  
+  .edit-button {
+    background-color: #4CAF50;
+  }
+  
+  .edit-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Modal Styles */
+  .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .close-modal {
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .close-modal:hover {
+    color: #e74c3c;
+  }
+  
+  /* Modal Form Styles */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  input,
+  textarea,
+  select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  button.add-item-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  button.add-item-submit:hover {
+    background-color: #45a049;
+  }
+  
+  /* Overlay effect when modal is active */
+  .modal-content {
+    transform: translateY(-50px);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .modal.show .modal-content {
+    transform: translateY(0);
+  }
+  

@@ -1,0 +1,120 @@
+/* Header container styling */
+.header {
+    position: relative;
+    margin-top: 100px;
+    width: 100%;
+    height:34vw ; /* Responsive height */
+    margin: 30px auto;
+    overflow: hidden; /* Hide parts of the image that exceed the container */
+    
+  }
+  
+  .header-image-container {
+    /*width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;*/
+    width: 100%;
+    height: 500px; /* Increase the height to 500px */
+    padding-top: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+  
+  .header_image {
+    width: 100%;
+    height: 100%;
+    padding-top: 15px;
+    border-radius: 10px;
+    
+    object-fit: cover; /* Ensure the image covers the area of the container */
+    transition: linear; /* Smooth transition effect for image change */
+    transition-duration: 1.5s;
+  }
+  
+  .header-contents {
+    /*position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1vw;
+    max-width: 50%;
+    align-items: 50%;
+    
+    
+    bottom: 10%;
+    left: 6vw;
+    animation: fadeIn 3s;
+    margin-bottom: -170px;*/
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1vw;
+    max-width: 50%;
+    top: 45%; /* Position from the top 10% of the container */
+    left: 6vw; /* Adjust as necessary */
+    animation: fadeIn 4s;
+    
+}
+.header-contents h2 {
+    font-weight: 1000;
+    color: aqua;
+    font-size: max(2.5vw, 22px);
+  }
+  
+  .header-contents p {
+    font-size: 1vw;
+    color: white;
+  }
+  
+  .header-contents button {
+    border: none;
+    color: indigo;
+    font-weight: 1000;
+    padding: 1vw 2.3vw;
+    background-color: aqua;
+    font-size: max(1vw, 13px);
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  
+  .header-contents button:hover {
+    background-color: aqua;
+    transition: 0.5s;
+    transform: scale(1.1);
+  }
+  
+  /* Media query for larger screens */
+  @media(max-width: 1050px) {
+    .header-contents {
+      max-width: 55%;
+    }
+    .header {
+      height: 38vw;
+    }
+  }
+  
+  /* Media query for small devices */
+  @media(max-width: 750px) {
+    .header-contents {
+      max-width: 55%;
+    }
+    .header-contents p {
+      display: none;
+    }
+    .header-contents button {
+      padding: 2vw 4vw;
+      margin-bottom: 20px;
+    }
+    .header-contents h2 {
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+  }
+  

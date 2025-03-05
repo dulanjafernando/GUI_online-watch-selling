@@ -1,0 +1,16 @@
+.watch-display{
+    margin-top: 30px;
+}
+.watch-display h2{
+    font-size: 45px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    color: rgb(19, 19, 95);
+}
+.watch-display-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+    margin-top: 30px;
+    gap: 30px;
+    row-gap: 50px;
+}
