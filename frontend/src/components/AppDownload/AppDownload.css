@@ -5,6 +5,9 @@
     text-align: center;
     font-variant: 500;
 }
+.app-download p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 .app-download-platforms{
     display: flex;
     justify-content: center;

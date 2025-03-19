@@ -1,68 +1,147 @@
-.login-popup{
-    /* position: absolute; */
+/* General Styles */
+.login-popup {
+    /*position: absolute;*/
     position: fixed;
     z-index: 1;
     width: 100%;
     height: 100%;
-    background-color: #00000090;
+    margin-left: -160px;
+    margin-top: -30px;
+    background-color: rgba(0, 0, 0, 0.56); /* Same as #00000090 */
     display: grid;
-}
-.login-popup-container{
-    place-self: center;
-    width: max(23vw,330px);
+    place-items: center; /* Centering the content */
+  }
+  
+  /* Main Popup Container */
+  .login-popup-container {
+    width: max(23vw, 330px);
+    background-color: #fff;
     color: #808080;
-    background-color: white;
     display: flex;
     flex-direction: column;
     gap: 25px;
     padding: 25px 30px;
     border-radius: 8px;
     font-size: 14px;
-    animation: fadeIn 0.5s;
-}
-.login-popup-title{
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Popup Title */
+  .login-popup-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: black;
-}
-.login-popup-title img{
-    width: 16px;
+    font-weight: 600; /* Professional appearance */
+  }
+  
+  /* Close Icon */
+  .login-popup-title img {
+    width: 12px;
     cursor: pointer;
-}
-.login-popup-inputs{
+    margin-top: -17px;
+  }
+  
+  /* Input Fields */
+  .login-popup-inputs {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-.login-popup-inputs input{
+    gap: 7px;
+  }
+  
+  /* Input Styles */
+  .login-popup-inputs input {
     outline: none;
     border: 1px solid #c9c9c9;
     border-radius: 4px;
     padding: 10px;
-}
-.login-popup-container button{
+    font-size: 14px; /* Consistent font size */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+  }
+  
+  .login-popup-inputs input:focus {
+    border-color: #007bff; /* Highlighted border on focus */
+  }
+  
+  /* Button Styles */
+  .login-popup-container button {
     border: none;
     padding: 10px;
     border-radius: 4px;
-    color: white;
+    color: #fff;
     background-color: blue;
     font-size: 15px;
+    font-weight: 600; /* Make the button text bolder */
     cursor: pointer;
-    justify-content: space-between;
-}
-.login-popup-condition{
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-popup-container button:hover {
+    background-color: #0056b3; /* Slightly darker blue on hover */
+  }
+  
+  /* Checkbox and Terms Section */
+  .login-popup-condition {
     display: flex;
     align-items: start;
     gap: 8px;
     margin-top: -15px;
-}
-.login-popup-condition input{
-    margin-top: 20px;
-}
-.login-popup p span{
-    color:blue;
+  }
+  
+  .login-popup-condition input {
+    margin-top: 5px;
+    margin-left: -50px;
+  }
+  
+  /* Hyperlink Styling */
+  .login-popup p span {
+    color: #007bff; /* Consistent color */
     font-weight: 500;
     cursor: pointer;
-}
-    
+  }
+  
+  .login-popup p span:hover {
+    text-decoration: underline; /* Underline on hover for better UI */
+  }
+  
+  /* User Type Selection (Admin/User) */
+  .user-type-selection {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Individual User Type Checkbox Label */
+  .user-type-selection label {
+    font-size: 14px;
+    color: #808080;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between checkbox and label */
+  }
+  
+  /* Checkbox Styling */
+  .user-type-selection input {
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: blue; /* Stylish modern checkboxes */
+  }
+  
+  /* Accessibility & Focus Styles */
+  input:focus-visible,
+  button:focus-visible {
+    outline: 2px solid #007bff; /* Focus outline for accessibility */
+    outline-offset: 2px;
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  

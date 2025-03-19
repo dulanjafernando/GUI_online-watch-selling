@@ -4,7 +4,7 @@ import './Cart.css'
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-  const{cartItems,watch_list,removeFromCart,getTotalCartAmount} = useContext(StoreContext);
+  const{cartItems,watchList,removeFromCart,getTotalCartAmount} = useContext(StoreContext);
   const navigate=useNavigate();
   return (
     <div className='cart'>
@@ -19,13 +19,13 @@ const Cart = () => {
         </div>
         <br/>
         <hr/>
-        {watch_list.map((item,index)=>{
+        {watchList.map((item,index)=>{
           if(cartItems[item._id]>0)
           {
             return(
               <div>
                 <div className='cart-items-title  cart-items-item'>
-                  <img src={item.image} alt=""/>
+                  <img src={"http://localhost:5000" +item.image} alt=""/>
                   <p>{item.name}</p>
                   <p>Rs {item.price}</p>
                   <p>{cartItems[item._id]}</p>

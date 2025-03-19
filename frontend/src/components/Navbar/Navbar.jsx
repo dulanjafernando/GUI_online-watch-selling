@@ -1,58 +1,105 @@
-import React, { useContext, useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
-const Navbar = ({ setShowLogin }) => {
-  const [item, setItem] = useState("item");
-  const [searchActive, setSearchActive] = useState(false); // State to toggle the search input visibility
-  const { getTotalCartAmount } = useContext(StoreContext);
+const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
+  const [searchActive, setSearchActive] = useState(false);
+  const { cartItems } = useContext(StoreContext);
+  
+  // Track the active link state
+  const [activeLink, setActiveLink] = useState('home');
+
+  // Calculate the total number of items in the cart
+  const cartItemCount = Object.values(cartItems).reduce((acc, count) => acc + count, 0);
 
   const handleSearchClick = () => {
-    setSearchActive(!searchActive); // Toggle the search input visibility
+    setSearchActive(!searchActive);
+  };
+
+  const handleLinkClick = (linkName) => {
+    setActiveLink(linkName); // Set the active link when a menu item is clicked
   };
 
   return (
     <div className="navbar">
       <div className="title">
-        <a to="/">
-          <img src={assets.logo} alt="" className="logo" />
+        <a href="/">
+          <img src={assets.logo} alt="Logo" className="logo" />
         </a>
         <p>EmrasWATCHFIT</p>
       </div>
-      <ul className="navbar-item">
-        <a href="/#" onClick={() => setItem("home")} className={item === "home" ? "active" : ""}>HOME</a>
-        <a href="/#explore-it" onClick={() => setItem("item")} className={item === "item" ? "active" : ""}>ITEMS</a>
-        <Link to="/admin" onClick={() => setItem("mobile")} className={item === "mobile" ? "active" : ""}>ADMIN</Link>
-        <a href="/#contact-us" onClick={() => setItem("contact-us")} className={item === "contact-us" ? "active" : ""}>CONTACT US</a>
-      </ul>
+
+      {/* Render navigation links only when not logged in as admin */}
+      {!isAdmin && (
+        <ul className="navbar-item">
+          <a
+            href="/#"
+            onClick={() => handleLinkClick('home')}
+            className={activeLink === 'home' ? 'active' : ''}
+          >
+            HOME
+          </a>
+          <a
+            href="/#explore-it"
+            onClick={() => handleLinkClick('items')}
+            className={activeLink === 'items' ? 'active' : ''}
+          >
+            ITEMS
+          </a>
+          <a
+            href="/#contact-us"
+            onClick={() => handleLinkClick('contact')}
+            className={activeLink === 'contact' ? 'active' : ''}
+          >
+            CONTACT US
+          </a>
+        </ul>
+      )}
+
       <div className="navbar-right">
-        {/* Search Icon */}
-        <img
-          src={assets.search_icon}
-          alt="Search"
-          className="search-icon"
-          onClick={handleSearchClick} // Toggle search input visibility
-        />
-        
-        {/* Search Input (Visible when searchActive is true) */}
-        {searchActive && (
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search..."
-            autoFocus
-          />
+        {/* Only show the search icon and cart when not logged in as Admin */}
+        {!isAdmin && (
+          <>
+            <img
+              src={assets.search_icon}
+              alt="Search"
+              className="search-icon"
+              onClick={handleSearchClick}
+            />
+            {searchActive && (
+              <input
+                type="text"
+                className="search-input"
+                placeholder="Search..."
+                autoFocus
+              />
+            )}
+            <div className="navbar-search-icon">
+              <Link to="/cart">
+                <div className="cart-icon-container">
+                  <img src={assets.basket_icon} className="cart-icon" alt="Cart" />
+                  {/* Display the notification dot if there are items in the cart */}
+                  {cartItemCount > 0 && <span className="cart-notification-dot"></span>}
+                </div>
+              </Link>
+            </div>
+          </>
         )}
-        
-        <div className="navbar-search-icon">
-          <Link to="/cart">
-            <img src={assets.basket_icon} alt="Cart" />
-          </Link>
-          <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
-        </div>
-        <button onClick={() => setShowLogin(true)}>Sign In</button>
+
+        {/* Show Admin link and Logout only if logged in as admin */}
+        {isAdmin ? (
+          <>
+            <Link to="/admin">
+              <button>Admin</button>
+            </Link>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
+          // Show Sign In button if not logged in
+          <button onClick={() => setShowLogin(true)}>Sign In</button>
+        )}
       </div>
     </div>
   );

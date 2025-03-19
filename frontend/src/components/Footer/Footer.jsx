@@ -29,12 +29,12 @@ const Footer = () => {
                     <h2>GET IN TOUCH</h2>
                     <ul>
                         <li>0723000184</li>
-                        <li>emras7@gmail.com</li>
+                        <li>emraswatchfit7@gmail.com</li>
                     </ul>
                 </div>
             </div>
             <hr/>
-            <p className="footeer=copyright">Copyright 2025 Emras.com - All Right Reserved.</p>
+            <p className="footeer=copyright">Copyright 2025 EmrasWATCHFIT.com - All Right Reserved.</p>
         
         </div>
     </div>

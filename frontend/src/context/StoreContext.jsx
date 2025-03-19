@@ -1,11 +1,11 @@
 import { createContext, useState,useEffect } from "react";
-import { watch_list } from "../assets/assets";
 
 // Create context
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
+  const [watchList, setWatchList] = useState([]);
 
   // Add to cart function
   const addToCart = (itemId) => {
@@ -21,13 +21,17 @@ const StoreContextProvider = (props) => {
     setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
   }
 
+  const addItemList = (watchList) => {
+    setWatchList(watchList)
+  }
+
   const getTotalCartAmount = ()=>{
     let totalAmount=0;
     for(const item in cartItems)
     {
       if (cartItems[item]>0){
-        let itemInfo=watch_list.find((product)=>product._id===item);
-        totalAmount+=itemInfo.price*cartItems[item];
+        let itemInfo = watchList.find((product)=> product._id === Number(item));
+        totalAmount += itemInfo.price * cartItems[item];
       }
     }
     return totalAmount;
@@ -35,7 +39,8 @@ const StoreContextProvider = (props) => {
 
   // Context value
   const contextValue = {
-    watch_list,
+    watchList,
+    addItemList,
     cartItems,
     setCartItems,
     addToCart,

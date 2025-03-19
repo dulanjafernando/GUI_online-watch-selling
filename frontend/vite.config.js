@@ -8,6 +8,6 @@ export default defineConfig({
     '**/*.JPG',
     '**/*.WEBP',
     '**/*.PNG',
-
+    '**/*.GIF', // Added support for GIF images
   ],
 })

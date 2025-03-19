@@ -1,8 +1,25 @@
 import basket_icon from './basket_icon.png'
 import logo from './logo.jpg'
 import header_img1 from './header_img1.jpg'
-import header_img2 from './header_img2.jpg'
+import header_img2 from './header_img2.gif'
 import header_img3 from './header_img3.jpg'
+import header_img4 from './header_img4.jpg'
+import header_img5 from './header_img5.jpg'
+import header_img6 from './header_img6.gif'
+import header_img7 from './header_img7.jpg'
+import header_img8 from './header_img8.jpg'
+import header_img9 from './header_img9.jpg'
+import header_img10 from './header_img10.gif'
+import header_img11 from './header_img11.jpg'
+import header_img12 from './header_img12.jpg'
+import header_img13 from './header_img13.webp'
+import header_img14 from './header_img14.gif'
+import header_img15 from './header_img15.gif'
+import header_img16 from './header_img16.gif'
+import header_img17 from './header_img17.gif'
+import header_img18 from './header_img18.gif'
+import header_img19 from './header_img19.gif'
+
 
 import search_icon from './search_icon.png'
 import it_1 from './it_1.png'
@@ -74,14 +91,31 @@ import profile_icon from './profile_icon.png'
 import bag_icon from './bag_icon.png'
 import logout_icon from './logout_icon.png'
 import parcel_icon from './parcel_icon.png'
+import cart_icon from './cart_icon.jpg'
 
 export const assets = {
     logo,
     basket_icon,
+    cart_icon,
     header_img1,
     header_img2,
     header_img3,
-   
+    header_img4,
+    header_img5,
+    header_img6,
+    header_img7,
+    header_img8,
+    header_img9,
+    header_img10,
+    header_img11,
+    header_img12,
+    header_img13,
+    header_img14,
+    header_img15,
+    header_img16,
+    header_img17,
+    header_img18,
+    header_img19,
     search_icon,
     rating_starts,
     add_icon_green,

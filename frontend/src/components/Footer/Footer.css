@@ -6,8 +6,10 @@
     align-items: center;
     gap: 20px;
     padding: 20px 8vw;
-    padding-top: 80px;
-    margin-top: 100px;
+    padding-top: 60px;
+    margin-top: 130px;
+    width: 1582px;
+    margin-left: -200px;
 }
 
 .footer-content{
@@ -27,6 +29,9 @@
     margin-bottom: 10px;
     cursor: pointer;
 }
+.footer-content-left{
+    margin-top: 35px;
+}
 .footer-content-right h2,.footer-content-center h2{
     color: aqua;
 }
@@ -35,6 +40,7 @@
     height: 50px; /* Set height to match width */
     margin-right: 15px;
     background-color: rgb(12, 125, 125);
+    margin-top: 17px;
 }
 
 
@@ -51,7 +57,6 @@
     width: 20px;
     border-radius: 40px;
 }
-
 
 
 @media(max-width:750px){

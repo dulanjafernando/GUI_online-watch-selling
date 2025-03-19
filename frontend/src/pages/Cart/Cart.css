@@ -5,12 +5,17 @@
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
     align-items: center;
-    color: grey;
+    color: rgb(29, 27, 48);
     font-size: max(1vw,12px);
+    font-weight: 700;
+    gap: 10px;
+    font-size: 17px;
 }
 .cart-items-item{
-    margin: 10px 0px;
-    color: black;
+    margin: 12px 0px;
+    margin-left: 0px;
+    gap: 12px;
+    color: rgb(54, 40, 187);
 }
 .cart-items-item img{
     width: 50px;
@@ -33,12 +38,13 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 7px;
 }
 .cart-total-details{
     display: flex;
     justify-content: space-between;
     color: #555;
+    
 }
 .cart-total button{
     border: none;
@@ -53,12 +59,16 @@
     background-color:rgb(72, 72, 135);
     transform: scale(1.1);
     transition: linear;
+    transition-duration: 250ms;
 }
 .cart-promocode{
     flex: 1;
 }
 .cart-promocode p{
-    color: #555;
+    color: #170360;
+    font-weight: 600;
+    font-size: 17px;
+    margin-left: 50px;
 }
 .cart-promocode-input{
     margin: 10px;
@@ -66,32 +76,35 @@
     justify-content: space-between;
     align-items: center;
     background-color:gray;
-    border-radius: 4px;
+    border-radius: 10px;
 }
 .cart-promocode-input{
     background: transparent;
-    border: none;
+    border: 2px solid white;
     outline: none;
     padding-left: 10px;
 }
 .cart-promocode-input input{
-    background-color: transparent;
-    border: none;
+    background-color: rgb(180, 168, 168);
     outline: none;
-    padding-left: 10px;
+    width: 430px;
+    padding-left: 20px;
 }
 .cart-promocode-input button{
     width: max(10vw,100px);
-    padding:12px ;
-    background-color:gray;
+    padding:10px ;
+    background-color:rgb(112, 110, 170);
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 17px;
+    font-weight: 700;
 }
 .cart-promocode-input button:hover{
-    background-color: lightblue;
+    background-color: rgb(131, 140, 143);
     transform: scale(1.1);
     transition: linear;
+    transition-duration: 250ms;
 }
 @media(max-width:750px){
     .cart-button{

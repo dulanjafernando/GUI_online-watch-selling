@@ -1,13 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './WatchDisplay.css'
-import { StoreContext } from '../../context/StoreContext'
 import WatchItem from '../WatchItem/WatchItem'
 
-const WatchDisplay = ({category}) => {
-
-    const {watch_list} = useContext(StoreContext)
-
-
+const WatchDisplay = ({category, watch_list}) => {
   return (
     <div className='watch-display' id='watch-display'>
         <h2>Top watchers near you</h2>
