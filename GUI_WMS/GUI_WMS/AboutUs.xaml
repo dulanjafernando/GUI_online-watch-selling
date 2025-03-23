@@ -1,0 +1,36 @@
+﻿<Window x:Class="GUI_WMS.AboutUs"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_WMS"
+        mc:Ignorable="d"
+        Title="About Us" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <!-- Background Image with Opacity -->
+        <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Rectangle.Fill>
+                <!-- Applying the image brush as the background with low opacity -->
+                <ImageBrush ImageSource="C:\Users\User\Documents\watches\header_img.jpg" Opacity="0.4"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!-- Content for the About Us page -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="600" Height="300">
+            <!-- Title for the About Us Page -->
+            <TextBlock Text="About Us" FontSize="40" FontWeight="Bold" Foreground="Brown" HorizontalAlignment="Center" Margin="0,0,0,20" />
+
+            <!-- Description TextBlock -->
+            <TextBlock Text="Welcome to the Online Watch Selling platform!" FontSize="25" Foreground="Black" FontStyle="Oblique" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,0,0,20" />
+
+            <TextBlock Text="We offer a wide selection of luxury and affordable watches, ensuring that you find the perfect timepiece for any occasion." 
+                       FontSize="16" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" TextWrapping="Wrap" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Our goal is to make it easy for you to shop for high-quality watches from the comfort of your home." 
+                       FontSize="16" HorizontalAlignment="Center" Foreground="DarkBlue" FontWeight="Bold"  TextWrapping="Wrap" Margin="0,0,0,20"/>
+
+            <!-- Back Button -->
+            <Button Content="Back to Home" Width="150" Height="40" Background="LightSkyBlue" Foreground="Blue" FontSize="14" FontWeight="Bold" Click="BackButton_Click" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>
