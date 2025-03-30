@@ -36,92 +36,59 @@ h2 {
   transition-duration: 0.2s;
 }
 
-/* Admin Page List Styles */
-.admin-page-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+/* Table Styles */
+.admin-page-table {
+  width: 1400px;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: -100px;
+  font-style: oblique;
 }
 
-.card {
-  background-color: #ccd0de;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  width: 200px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 1.1);
-  overflow: hidden;
-  height: 300px; /* Increased height to accommodate content */
-  
-}
-
-.card-content {
+.admin-page-table th, .admin-page-table td {
   padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%; /* Ensures content fills the card */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-.card-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
+.admin-page-table th {
+  background-color: #eadede;
 }
 
-.card-header h3 {
-  font-size: 18px;
-  margin-bottom: 5px;
+.table-image {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 20px;
+  border: 3px solid black;
 }
 
-.price {
-  font-size: 25px;
-  color: rgb(73, 11, 73);
-  margin-bottom: 15px;
-}
-
-.card-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
-.card-buttons .delete-button {
-  background-color: #1926dd;
-  color: white;
-  border: none;
+button.edit-button, button.delete-button {
   padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s ease;
 }
 
-.card-buttons .edit-button {
-  background-color: #e3243d;
+button.edit-button {
+  background-color: #2e11e7;
   color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
 }
 
-.card-buttons .delete-button:hover {
-  background-color: rgb(40, 40, 104);
+button.edit-button:hover {
+  background-color: rgb(14, 7, 148);
   transition: linear;
   transition-duration: 0.2s;
   scale: 1.05;
 }
 
-.edit-button {
-  background-color: #4CAF50;
+button.delete-button {
+  background-color: #e3243d;
+  color: white;
 }
 
-.edit-button:hover {
-  background-color: rgb(157, 19, 19);
+button.delete-button:hover {
+  background-color: rgb(171, 10, 21);
   transition: linear;
   transition-duration: 0.2s;
   scale: 1.05;
@@ -152,19 +119,19 @@ h2 {
 }
 
 .close-modal {
-  font-size: 24px;
+  font-size: 30px;
   color: #333;
   cursor: pointer;
   position: absolute;
-  top: 10px;
+  top: 18px;
   right: 10px;
+  right: 18px;
 }
 
 .close-modal:hover {
   color: #e74c3c;
 }
 
-/* Modal Form Styles */
 form {
   display: flex;
   flex-direction: column;
@@ -209,25 +176,68 @@ button.add-item-submit:hover {
   transition-duration: 0.2s;
   scale: 1.05;
 }
+/* Modal Styles for Delete Confirmation */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
 
-/* Overlay effect when modal is active */
 .modal-content {
-  transform: translateY(-50px);
-  transition: transform 0.3s ease-in-out;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.modal.show .modal-content {
-  transform: translateY(0);
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
-/* Card Image Styles - Small Size */
-.card-image {
-  width: 80px;
-  height: 80px; 
-  object-fit: contain;  
-  margin: 10px;
-  border-radius: 20px;
-  border: 3px solid black;
-  background-color: white;
-  margin-left: 0px;
+button.delete-confirm,
+button.delete-cancel {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 10px;
+  width: 120px;
+}
+
+button.delete-confirm {
+  background-color: #e3243d;
+  color: white;
+  border: none;
+}
+
+button.delete-confirm:hover {
+  background-color: rgb(171, 10, 21);
+  transition: linear;
+  transition-duration: 0.2s;
+  scale: 1.05;
+}
+
+button.delete-cancel {
+  background-color:blue;
+  color: white;
+  border: none;
+}
+
+button.delete-cancel:hover {
+  background-color: rgb(39, 37, 144);
+  transition: linear;
+  transition-duration: 0.2s;
+  scale: 1.05;
 }

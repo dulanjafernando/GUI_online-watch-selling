@@ -9,10 +9,11 @@ const AdminPage = () => {
     price: '',
     description: '',
     category: 'Apple Watch',
-    image: null, // Store file instead of URL
+    image: null,
   });
-
   const [editItem, setEditItem] = useState(null);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   useEffect(() => {
     fetch('http://localhost:5000/watches')
@@ -26,12 +27,19 @@ const AdminPage = () => {
     setEditItem(null);
   };
 
-  const handleDelete = async (id) => {
+  const confirmDelete = (id) => {
+    setShowDeleteConfirmation(true);
+    setItemToDelete(id);
+  };
+
+  const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/delete-watches/${id}`, { method: 'DELETE' });
+      const response = await fetch(`http://localhost:5000/delete-watches/${itemToDelete}`, { method: 'DELETE' });
       if (response.ok) {
-        setWatchList(prevState => prevState.filter(item => item._id !== id));
+        setWatchList(prevState => prevState.filter(item => item._id !== itemToDelete));
         alert('Watch deleted successfully');
+        setShowDeleteConfirmation(false);
+        setItemToDelete(null);
       } else {
         alert('Failed to delete watch');
       }
@@ -39,6 +47,11 @@ const AdminPage = () => {
       console.error('Error deleting watch:', error);
       alert('Error occurred while deleting the watch');
     }
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false);
+    setItemToDelete(null);
   };
 
   const handleEdit = (id) => {
@@ -84,7 +97,7 @@ const AdminPage = () => {
 
       if (response.ok) {
         alert('Item added successfully!');
-        setShowModal(false);
+        setShowModal(true);
         setNewItem({ name: '', price: '', description: '', category: 'Apple Watch', image: null });
 
         const watchResponse = await fetch('http://localhost:5000/watches');
@@ -118,7 +131,7 @@ const AdminPage = () => {
 
       if (response.ok) {
         alert('Item updated successfully!');
-        setShowModal(false);
+        setShowModal(true);
 
         const watchResponse = await fetch('http://localhost:5000/watches');
         const watchData = await watchResponse.json();
@@ -137,21 +150,33 @@ const AdminPage = () => {
       <h2>Admin Panel - Watches List</h2>
       <button className="add-item-button" onClick={() => setShowModal(true)}>Add Item</button>
 
-      <div className="admin-page-list">
-        {watchList.map(item => (
-          <div className="card" key={item._id}>
-            <div className="card-content">
-              {item.image && <img src={"http://localhost:5000"+item.image} className="card-image" alt={item.name} />}
-              <h3>{item.name}</h3>
-              <p className="price">Rs {item.price}</p>
-              <div className="card-buttons">
-                <button className="delete-button" onClick={() => handleDelete(item._id)}>Delete</button>
+      <table className="admin-page-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price(Rs)</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {watchList.map(item => (
+            <tr key={item._id}>
+              <td><img src={`http://localhost:5000${item.image}`} alt={item.name} className="table-image" /></td>
+              <td>{item.name}</td>
+              <td>{item.price}</td>
+              <td>{item.description}</td>
+              <td>{item.category}</td>
+              <td>
                 <button className="edit-button" onClick={() => handleEdit(item._id)}>Edit</button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+                <button className="delete-button" onClick={() => confirmDelete(item._id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       {showModal && (
         <div className="modal" onClick={() => setShowModal(false)}>
@@ -185,6 +210,16 @@ const AdminPage = () => {
 
               <button type="submit" className="add-item-submit">{editItem ? 'Save Changes' : 'Add Item'}</button>
             </form>
+          </div>
+        </div>
+      )}
+
+      {showDeleteConfirmation && (
+        <div className="modal" onClick={handleCancelDelete}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <h3>Are you sure you want to delete this watch?</h3>
+            <button className="delete-confirm" onClick={handleDelete}>Yes</button>
+            <button className="delete-cancel" onClick={handleCancelDelete}>No</button>
           </div>
         </div>
       )}
