@@ -4,23 +4,24 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Cart from './pages/Cart/Cart';
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
+import AboutUs from './pages/AboutUs/AboutUs'; 
 import Footer from './components/Footer/Footer';
 import LoginPopup from './components/LoginPopup/LoginPopup';
 import AdminPage from './pages/AdminPage/AdminPage';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);  // Track admin login state
+  const [isAdmin, setIsAdmin] = useState(false);  
 
   const handleLogin = (userType) => {
     if (userType === "Admin") {
-      setIsAdmin(true);  // Set admin state to true if the user logs in as admin
+      setIsAdmin(true);  
     }
-    setShowLogin(false);  // Close login popup after successful login
+    setShowLogin(false);  
   };
 
   const handleLogout = () => {
-    setIsAdmin(false);  // Reset admin state on logout
+    setIsAdmin(false);  
   };
 
   return (
@@ -31,7 +32,8 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/order' element={<PlaceOrder />} />
-        <Route path='/admin' element={isAdmin ? <AdminPage /> : <Home />} />  {/* Only show AdminPage if isAdmin is true */}
+        <Route path='/about-us' element={<AboutUs />} /> 
+        <Route path='/admin' element={isAdmin ? <AdminPage /> : <Home />} />  
       </Routes>
       <Footer />
     </div>

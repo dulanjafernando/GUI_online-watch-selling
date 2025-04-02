@@ -70,7 +70,7 @@ db.connect((err) => {
         
         // Create the watches table if it doesn't exist
         const createTableQuery = `
-            CREATE TABLE IF NOT EXISTS watches (
+            CREATE TABLE IF NOT EXISTS watch (
                 _id INT AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(255) NOT NULL,
                 image VARCHAR(255) NOT NULL,
@@ -92,7 +92,7 @@ db.connect((err) => {
 
 // Fetch all watches
 app.get('/watches', (req, res) => {
-    const query = 'SELECT * FROM watches';
+    const query = 'SELECT * FROM watch';
     db.query(query, (err, result) => {
         if (err) {
             console.error('Error fetching watches:', err);
@@ -122,7 +122,7 @@ app.post('/add-watches', upload.single('image'), (req, res) => {
         }
 
         // Insert data into database
-        const query = 'INSERT INTO watches (name, image, price, description, category) VALUES (?, ?, ?, ?, ?)';
+        const query = 'INSERT INTO watch (name, image, price, description, category) VALUES (?, ?, ?, ?, ?)';
         db.query(query, [name, imagePath, price, description, category], (err, result) => {
             if (err) {
                 console.error('Database error:', err);
@@ -147,7 +147,7 @@ app.put('/update-watches/:id', upload.single('image'), (req, res) => {
         imagePath = '/uploads/' + req.file.filename; // If a new image is uploaded, use the new image
     }
 
-    const query = 'UPDATE watches SET name = ?, image = ?, price = ?, description = ?, category = ? WHERE _id = ?';
+    const query = 'UPDATE watch SET name = ?, image = ?, price = ?, description = ?, category = ? WHERE _id = ?';
     db.query(query, [name, imagePath, price, description, category, id], (err, result) => {
         if (err) {
             console.error('Error updating watch:', err);
@@ -165,7 +165,7 @@ app.put('/update-watches/:id', upload.single('image'), (req, res) => {
 // Delete a watch by ID
 app.delete('/delete-watches/:id', (req, res) => {
     const { id } = req.params;
-    const query = 'DELETE FROM watches WHERE _id = ?';
+    const query = 'DELETE FROM watch WHERE _id = ?';
     db.query(query, [id], (err, result) => {
         if (err) {
             console.error('Error deleting watch:', err);

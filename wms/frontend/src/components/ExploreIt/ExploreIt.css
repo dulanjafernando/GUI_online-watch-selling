@@ -8,7 +8,7 @@
     color: #071a64;
     font-weight: 600;
     font-size: 45px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 .explore-t-text{
     max-width: 100%;
@@ -18,6 +18,7 @@
     font-weight: 600;
     color: rgb(11, 11, 146);
     font-style: oblique;
+    margin-top: -20px;
 }
 .explore-t-list{
     display: flex;
@@ -38,6 +39,7 @@
     cursor: pointer;
     border-radius: 15%;
     transition: 0.2s;
+    margin-top: 0px;
 }
 .explore-t-list-item p{
     margin-top: 10px;

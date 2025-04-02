@@ -1,5 +1,8 @@
 import basket_icon from './basket_icon.png'
 import logo from './logo.jpg'
+import person1 from './person1.jpg'
+import person2 from './person2.jpg'
+import person3 from './person3.jpg'
 import header_img1 from './header_img1.jpg'
 import header_img2 from './header_img2.gif'
 import header_img3 from './header_img3.jpg'
@@ -97,6 +100,9 @@ export const assets = {
     logo,
     basket_icon,
     cart_icon,
+    person1,
+    person2,
+    person3,
     header_img1,
     header_img2,
     header_img3,

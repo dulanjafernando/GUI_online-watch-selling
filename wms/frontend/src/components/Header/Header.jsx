@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
 
-
-// Importing the images
 import img1 from '../../assets/header_img1.jpg';
 import img2 from '../../assets/header_img2.gif';
 import img3 from '../../assets/header_img3.jpg';
@@ -23,7 +21,7 @@ import img17 from '../../assets/header_img17.gif';
 import img18 from '../../assets/header_img18.gif';
 import img19 from '../../assets/header_img19.gif';
 
-const images = [img1, img18, img2,img17, img3, img4, img19, img15, img5, img6, img7, img16, img8,  img12, img9, img11, img10, img13, img14]; // Array to hold the images
+const images = [img1, img18, img2,img17, img3, img4, img19, img15, img5, img6, img7, img16, img8,  img12, img9, img11, img10, img13, img14]; 
 
 const Header = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -32,8 +30,8 @@ const Header = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4700); // Change image every 4.7 seconds
-    return () => clearInterval(interval); // Cleanup the interval on component unmount
+    }, 4700); 
+    return () => clearInterval(interval); 
   }, []);
 
   return (

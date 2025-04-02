@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
 import { Link } from 'react-router-dom';
@@ -7,11 +7,9 @@ import { StoreContext } from '../../context/StoreContext';
 const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
   const [searchActive, setSearchActive] = useState(false);
   const { cartItems } = useContext(StoreContext);
-  
-  // Track the active link state
+
   const [activeLink, setActiveLink] = useState('home');
 
-  // Calculate the total number of items in the cart
   const cartItemCount = Object.values(cartItems).reduce((acc, count) => acc + count, 0);
 
   const handleSearchClick = () => {
@@ -19,7 +17,7 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
   };
 
   const handleLinkClick = (linkName) => {
-    setActiveLink(linkName); // Set the active link when a menu item is clicked
+    setActiveLink(linkName);
   };
 
   return (
@@ -31,35 +29,25 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
         <p>EmrasWATCHFIT</p>
       </div>
 
-      {/* Render navigation links only when not logged in as admin */}
+      {/* Render navigation links only if not admin */}
       {!isAdmin && (
         <ul className="navbar-item">
-          <a
-            href="/#"
-            onClick={() => handleLinkClick('home')}
-            className={activeLink === 'home' ? 'active' : ''}
-          >
-            HOME
+          <a href="/" onClick={() => handleLinkClick('home')}>
+            <li className={activeLink === 'home' ? 'active' : ''}>Home</li>
           </a>
-          <a
-            href="/#explore-it"
-            onClick={() => handleLinkClick('items')}
-            className={activeLink === 'items' ? 'active' : ''}
-          >
-            ITEMS
+          <Link to="/about-us" onClick={() => handleLinkClick('aboutUs')}>
+            <li className={activeLink === 'aboutUs' ? 'active' : ''}>About Us</li>
+          </Link>
+          <a href="/#explore-it" onClick={() => handleLinkClick('items')}>
+            <li className={activeLink === 'items' ? 'active' : ''}>Items</li>
           </a>
-          <a
-            href="/#contact-us"
-            onClick={() => handleLinkClick('contact')}
-            className={activeLink === 'contact' ? 'active' : ''}
-          >
-            CONTACT US
+          <a href="/#contact-us" onClick={() => handleLinkClick('contact')}>
+            <li className={activeLink === 'contact' ? 'active' : ''}>Contact Us</li>
           </a>
         </ul>
       )}
 
       <div className="navbar-right">
-        {/* Only show the search icon and cart when not logged in as Admin */}
         {!isAdmin && (
           <>
             <img
@@ -80,7 +68,6 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
               <Link to="/cart">
                 <div className="cart-icon-container">
                   <img src={assets.basket_icon} className="cart-icon" alt="Cart" />
-                  {/* Display the notification dot if there are items in the cart */}
                   {cartItemCount > 0 && <span className="cart-notification-dot"></span>}
                 </div>
               </Link>
@@ -88,7 +75,7 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
           </>
         )}
 
-        {/* Show Admin link and Logout only if logged in as admin */}
+        {/* Admin Controls */}
         {isAdmin ? (
           <>
             <Link to="/admin">
@@ -97,7 +84,6 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
             <button onClick={handleLogout}>Logout</button>
           </>
         ) : (
-          // Show Sign In button if not logged in
           <button onClick={() => setShowLogin(true)}>Sign In</button>
         )}
       </div>

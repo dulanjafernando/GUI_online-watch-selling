@@ -9,7 +9,7 @@ const Footer = () => {
             <div className="footer-content">
                 <div className="footer-content-left">
                     <img src={assets.logo} alt=""/>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos beatae praesentium provident, cumque eum facilis inventore quam soluta unde ipsa quibusdam ab? Placeat provident maxime quia nesciunt repellat iusto perspiciatis?</p>
+                        <p>Technology refers to the application of scientific knowledge, tools, techniques, and systems to solve problems, improve efficiency, and enhance the quality of life. It encompasses a wide range of innovations, from basic tools like the wheel to advanced systems like artificial intelligence, robotics, and communication networks. Technology plays a central role in shaping industries, communication, healthcare, education, and daily human activities.</p>
                         <div className="footer-social-icons">
                             <img   src={assets.facebook_icon} alt=""/>
                             <img src={assets.twitter_icon} alt=""/>
@@ -34,7 +34,7 @@ const Footer = () => {
                 </div>
             </div>
             <hr/>
-            <p className="footeer=copyright">Copyright 2025 EmrasWATCHFIT.com - All Right Reserved.</p>
+            <p className="footer-copyright">Copyright 2025 EmrasWATCHFIT.com - All Right Reserved.</p>
         
         </div>
     </div>
