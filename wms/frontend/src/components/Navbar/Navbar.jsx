@@ -7,8 +7,8 @@ import { StoreContext } from '../../context/StoreContext';
 const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
   const [searchActive, setSearchActive] = useState(false);
   const { cartItems } = useContext(StoreContext);
-
   const [activeLink, setActiveLink] = useState('home');
+  const [addedToCart, setAddedToCart] = useState(false); // Track the "Added to Cart" notification
 
   const cartItemCount = Object.values(cartItems).reduce((acc, count) => acc + count, 0);
 
@@ -18,6 +18,14 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
 
   const handleLinkClick = (linkName) => {
     setActiveLink(linkName);
+  };
+
+  // Function to show "Added to Cart" notification
+  const onAddToCart = (added) => {
+    setAddedToCart(added);
+    if (added) {
+      setTimeout(() => setAddedToCart(false), 2000); // Hide the notification after 2 seconds
+    }
   };
 
   return (
@@ -87,6 +95,13 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
           <button onClick={() => setShowLogin(true)}>Sign In</button>
         )}
       </div>
+
+      {/* Added to Cart notification */}
+      {addedToCart && (
+        <div className="added-to-cart-notification">
+          Added to cart
+        </div>
+      )}
     </div>
   );
 };

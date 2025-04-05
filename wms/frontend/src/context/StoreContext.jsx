@@ -1,4 +1,4 @@
-import { createContext, useState,useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 
 // Create context
 export const StoreContext = createContext(null);
@@ -8,34 +8,39 @@ const StoreContextProvider = (props) => {
   const [watchList, setWatchList] = useState([]);
 
   // Add to cart function
-  const addToCart = (itemId) => {
-    if(!cartItems[itemId]){
-      setCartItems((prev)=>({...prev,[itemId]:1}))
-    }
-    else{
-      setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
-    }
-  }
+  const addToCart = (itemId, itemCount) => {
+    // If item doesn't exist, add it to the cart with the count
+    setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + itemCount }));
+  };
 
-  const removeFromCart = (itemId)=>{
-    setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
-  }
+  // Remove item from the cart
+  const removeFromCart = (itemId) => {
+    const updatedCart = { ...cartItems };
+    delete updatedCart[itemId]; // Remove item entirely from cart
+    setCartItems(updatedCart);
+  };
 
+  // Add watchlist function
   const addItemList = (watchList) => {
-    setWatchList(watchList)
-  }
+    setWatchList(watchList);
+  };
 
-  const getTotalCartAmount = ()=>{
-    let totalAmount=0;
-    for(const item in cartItems)
-    {
-      if (cartItems[item]>0){
-        let itemInfo = watchList.find((product)=> product._id === Number(item));
-        totalAmount += itemInfo.price * cartItems[item];
+  // Get total cart amount
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        let itemInfo = watchList.find((product) => product._id === Number(item));
+        totalAmount += itemInfo?.price * cartItems[item];
       }
     }
     return totalAmount;
-  }
+  };
+
+  // Get total number of items in cart
+  const getTotalCartItems = () => {
+    return Object.values(cartItems).reduce((acc, count) => acc + count, 0);
+  };
 
   // Context value
   const contextValue = {
@@ -45,7 +50,8 @@ const StoreContextProvider = (props) => {
     setCartItems,
     addToCart,
     removeFromCart,
-    getTotalCartAmount
+    getTotalCartAmount,
+    getTotalCartItems
   };
 
   return (
@@ -56,5 +62,3 @@ const StoreContextProvider = (props) => {
 };
 
 export default StoreContextProvider;
-
-
