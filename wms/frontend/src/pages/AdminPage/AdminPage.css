@@ -1,4 +1,4 @@
-/* Admin Page Styles */
+
 .admin-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -20,7 +20,8 @@ h2 {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 700;
   margin-bottom: 20px;
   border-radius: 5px;
   display: block;
@@ -36,7 +37,7 @@ h2 {
   transition-duration: 0.2s;
 }
 
-/* Table Styles */
+
 .admin-page-table {
   width: 1400px;
   border-collapse: collapse;
@@ -94,7 +95,7 @@ button.delete-button:hover {
   scale: 1.05;
 }
 
-/* Modal Styles */
+
 .modal {
   display: flex;
   justify-content: center;
@@ -116,6 +117,9 @@ button.delete-button:hover {
   text-align: left;
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.modal-content h3{
+  font-size: 18px;
 }
 
 .close-modal {

@@ -1,4 +1,4 @@
-/* Notification Styling */
+
 .added-to-cart-notification {
   position: fixed;
   top: 10px;
@@ -25,7 +25,7 @@
   }
 }
 
-/* Navbar Styling */
+
 .navbar {
   margin-bottom: 80px;
   position: fixed;
@@ -104,7 +104,7 @@
   transition: linear;
 }
 
-/* Search Icon & Dot */
+
 .navbar-search-icon {
   position: relative;
 }
@@ -150,7 +150,7 @@
 /* Search Input Styling */
 .search-input {
   position: absolute;
-  top: 100%; /* Position just below the navbar */
+  top: 100%; 
   left: 1050px;
   width: 300px;
   padding: 10px;
@@ -161,26 +161,26 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out, visibility 0.3s;
-  z-index: -1; /* Ensure it stays below the navbar content */
+  z-index: -1; 
 }
 
-/* When search is active, show the input */
+
 .search-input:focus {
   outline: none;
   border-color: #1e5ea3;
 }
 
-/* Navbar Search Icon Styling */
+
 .navbar-search-icon img {
   width: 20px;
   height: 20px;
 }
 
-/* When searchActive is true, make the input visible */
+
 .navbar .navbar-right .search-input {
   opacity: 1;
   visibility: visible;
-  z-index: 100; /* Bring it above other navbar elements */
+  z-index: 100;
 }
 
 /* Media Queries for Responsiveness */

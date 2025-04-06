@@ -10,6 +10,7 @@
    /* border: 3px solid black;*/
     border-radius: 13px;
     padding: 0px;
+    box-shadow: 10px 14px 25px rgba(0, 0, 0, 1.1);
     
   }
   
@@ -66,7 +67,7 @@
     
 }
 .header-contents h2 {
-    font-weight: 1000;
+    font-weight: 1200;
     color: aqua;
     font-size: max(2.5vw, 22px);
   }
@@ -74,7 +75,7 @@
   .header-contents p {
     font-size: 1vw;
     color: white;
-    font-weight: 700;
+    font-weight: 800;
   }
   
   .header-contents button {

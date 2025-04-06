@@ -5,8 +5,8 @@
     z-index: 1;
     width: 100%;
     height: 100%;
-    margin-left: -160px;
-    margin-top: -30px;
+    margin-left: -154px;
+    margin-top: -40px;
     background-color: rgba(0, 0, 0, 0.56); /* Same as #00000090 */
     display: grid;
     place-items: center; /* Centering the content */

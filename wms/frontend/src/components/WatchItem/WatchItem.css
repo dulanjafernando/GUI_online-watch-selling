@@ -1,4 +1,4 @@
-/* WatchItem Styles */
+
 .watch-item {
   width: 300px;
   margin: auto;
@@ -50,6 +50,7 @@
 
 .watch-item-name-rating img {
   width: 70px;
+  margin-top: 3px;
 }
 
 .watch-item-desc {
@@ -59,7 +60,7 @@
 }
 
 .watch-item-price {
-  color: #2a5db0; /* A more professional shade of blue */
+  color: #2a5db0; 
   font-size: 20px;
   font-weight: 500;
   margin-top: 10px;
@@ -92,7 +93,7 @@
 }
 
 .item-count-input {
-  width: 80px; /* Increased width for better visibility */
+  width: 80px; 
   height: 35px;
   font-size: 18px;
   text-align: center;
@@ -107,7 +108,7 @@
 }
 
 .item-count-input::placeholder {
-  color: #ccc; /* Light placeholder color */
+  color: #ccc; 
 }
 
 .watch-item-counter button {
@@ -138,11 +139,11 @@
 }
 
 .watch-item-counter .minus {
-  color: #e74c3c; /* Red for minus */
+  color: #e74c3c; 
 }
 
 .watch-item-counter .plus {
-  color: #2c3e50; /* Darker color for plus */
+  color: #2c3e50; 
 }
 
 .add-to-cart-button,
@@ -157,13 +158,13 @@
 }
 
 .add-to-cart-button {
-  background-color: #6455c6; /* Green for Add to Cart */
+  background-color: #6455c6; 
   color: white;
   border: none;
 }
 
 .add-to-cart-button:hover {
-  background-color: #0b0b4c; /* Slightly darker green */
+  background-color: #0b0b4c; 
 }
 
 .remove-from-cart-button {
@@ -195,12 +196,9 @@
   gap: 40px;
   row-gap: 50px;
 }
-/* Error message styling */
-.error-message {
-  color: red;
-  font-size: 14px;
+.added-message{
+  font-size: 15px;
+  color: green;
   font-weight: bold;
-  margin-top: 10px;
   text-align: center;
 }
-

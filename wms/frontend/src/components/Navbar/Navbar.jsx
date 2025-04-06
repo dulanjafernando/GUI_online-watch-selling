@@ -8,7 +8,7 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
   const [searchActive, setSearchActive] = useState(false);
   const { cartItems } = useContext(StoreContext);
   const [activeLink, setActiveLink] = useState('home');
-  const [addedToCart, setAddedToCart] = useState(false); // Track the "Added to Cart" notification
+  const [addedToCart, setAddedToCart] = useState(false); 
 
   const cartItemCount = Object.values(cartItems).reduce((acc, count) => acc + count, 0);
 
@@ -20,7 +20,7 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
     setActiveLink(linkName);
   };
 
-  // Function to show "Added to Cart" notification
+  
   const onAddToCart = (added) => {
     setAddedToCart(added);
     if (added) {

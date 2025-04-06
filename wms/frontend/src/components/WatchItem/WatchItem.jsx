@@ -8,9 +8,15 @@ const WatchItem = ({ id, name, price, description, image, onAddToCart }) => {
   const [itemCount, setItemCount] = useState(cartItems[id] || 0); // Track the current item count
   const [isAdded, setIsAdded] = useState(cartItems[id] > 0); // Track if the item is in the cart
   const [errorMessage, setErrorMessage] = useState(''); // State for error message
+  const [addedMessage, setAddedMessage] = useState(''); // State for "Added to Cart" message
 
   useEffect(() => {
     setItemCount(cartItems[id] || 0);
+    if (cartItems[id] > 0) {
+      setAddedMessage('Added to Cart');
+    } else {
+      setAddedMessage('');
+    }
   }, [cartItems, id]); // Sync itemCount with cartItems state
 
   // Handle input changes for item count
@@ -47,6 +53,7 @@ const WatchItem = ({ id, name, price, description, image, onAddToCart }) => {
     if (itemCount > 0 && itemCount <= 200) {
       addToCart(id, itemCount); // Add to cart with selected item count
       setIsAdded(true);
+      setAddedMessage('Added to Cart');
       onAddToCart(true); // Notify the parent (Navbar) that an item is added to the cart
     } else if (itemCount > 200) {
       setErrorMessage('You cannot exceed 200 item quantity');
@@ -58,6 +65,7 @@ const WatchItem = ({ id, name, price, description, image, onAddToCart }) => {
     removeFromCart(id); // Remove item from cart and set count to 0
     setItemCount(0); // Reset the item count to 0 when removed
     setIsAdded(false);
+    setAddedMessage(''); // Clear the "Added to Cart" message
     onAddToCart(false); // Notify the parent (Navbar) that the item is removed from the cart
   };
 
@@ -121,6 +129,9 @@ const WatchItem = ({ id, name, price, description, image, onAddToCart }) => {
 
         {/* Error message for exceeding quantity */}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+        {/* Added to Cart Message */}
+        {addedMessage && <p className="added-message">{addedMessage}</p>}
 
         {/* Add/Remove from Cart Button */}
         <button
