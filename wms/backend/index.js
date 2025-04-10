@@ -76,7 +76,8 @@ db.connect((err) => {
                 image VARCHAR(255) NOT NULL,
                 price DECIMAL(10, 2) NOT NULL,
                 description TEXT,
-                category VARCHAR(100) NOT NULL
+                category VARCHAR(100) NOT NULL,
+                available INT DEFAULT 0 NOT NULL 
             )
         `;
 
@@ -106,10 +107,10 @@ app.get('/watches', (req, res) => {
 // Add a new watch
 app.post('/add-watches', upload.single('image'), (req, res) => {
     try {
-        const { name, price, description, category } = req.body;
+        const { name, price, description, category, available } = req.body;
 
         // Validate input fields
-        if (!name || !price || !description || !category) {
+        if (!name || !price || !description || !category || available === undefined) {
             return res.status(400).json({ error: 'All fields are required' });
         }
 
@@ -122,8 +123,8 @@ app.post('/add-watches', upload.single('image'), (req, res) => {
         }
 
         // Insert data into database
-        const query = 'INSERT INTO watch (name, image, price, description, category) VALUES (?, ?, ?, ?, ?)';
-        db.query(query, [name, imagePath, price, description, category], (err, result) => {
+        const query = 'INSERT INTO watch (name, image, price, description, category, available) VALUES (?, ?, ?, ?, ?, ?)';
+        db.query(query, [name, imagePath, price, description, category, available], (err, result) => {
             if (err) {
                 console.error('Database error:', err);
                 return res.status(500).json({ error: 'Error adding watch' });
@@ -139,7 +140,7 @@ app.post('/add-watches', upload.single('image'), (req, res) => {
 // Update a watch by ID
 app.put('/update-watches/:id', upload.single('image'), (req, res) => {
     const { id } = req.params;
-    const { name, price, description, category } = req.body;
+    const { name, price, description, category, available } = req.body;
 
     // Handle image update logic
     let imagePath = req.body.image; // If no new image is uploaded, use the existing one
@@ -147,8 +148,8 @@ app.put('/update-watches/:id', upload.single('image'), (req, res) => {
         imagePath = '/uploads/' + req.file.filename; // If a new image is uploaded, use the new image
     }
 
-    const query = 'UPDATE watch SET name = ?, image = ?, price = ?, description = ?, category = ? WHERE _id = ?';
-    db.query(query, [name, imagePath, price, description, category, id], (err, result) => {
+    const query = 'UPDATE watch SET name = ?, image = ?, price = ?, description = ?, category = ?, available = ? WHERE _id = ?';
+    db.query(query, [name, imagePath, price, description, category, available, id], (err, result) => {
         if (err) {
             console.error('Error updating watch:', err);
             return res.status(500).send('Error updating watch');

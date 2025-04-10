@@ -60,6 +60,10 @@ const Cart = () => {
             {renderCartItems()}
           </tbody>
         </table>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </div>
 
       <div className="cart-footer">

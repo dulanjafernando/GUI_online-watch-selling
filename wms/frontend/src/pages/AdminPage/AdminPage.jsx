@@ -10,6 +10,7 @@ const AdminPage = () => {
     description: '',
     category: 'Apple Watch',
     image: null,
+    available: 0,
   });
   const [editItem, setEditItem] = useState(null);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -36,7 +37,7 @@ const AdminPage = () => {
     try {
       const response = await fetch(`http://localhost:5000/delete-watches/${itemToDelete}`, { method: 'DELETE' });
       if (response.ok) {
-        setWatchList(prevState => prevState.filter(item => item._id !== itemToDelete));
+        setWatchList(prevState => prevState.filter(item => item._id !== itemToDelete));  // Filter out the deleted item from the list
         alert('Watch deleted successfully');
         setShowDeleteConfirmation(false);
         setItemToDelete(null);
@@ -85,6 +86,7 @@ const AdminPage = () => {
     formData.append('price', newItem.price);
     formData.append('description', newItem.description);
     formData.append('category', newItem.category);
+    formData.append('available', newItem.available);
     if (newItem.image) {
       formData.append('image', newItem.image);
     }
@@ -97,8 +99,8 @@ const AdminPage = () => {
 
       if (response.ok) {
         alert('Item added successfully!');
-        setShowModal(true);
-        setNewItem({ name: '', price: '', description: '', category: 'Apple Watch', image: null });
+        setShowModal(false);
+        setNewItem({ name: '', price: '', description: '', category: 'Apple Watch', image: null, available: 0 });
 
         const watchResponse = await fetch('http://localhost:5000/watches');
         const watchData = await watchResponse.json();
@@ -119,6 +121,7 @@ const AdminPage = () => {
     formData.append('price', editItem.price);
     formData.append('description', editItem.description);
     formData.append('category', editItem.category);
+    formData.append('available', editItem.available);
     if (editItem.image) {
       formData.append('image', editItem.image);
     }
@@ -131,7 +134,7 @@ const AdminPage = () => {
 
       if (response.ok) {
         alert('Item updated successfully!');
-        setShowModal(true);
+        setShowModal(false);
 
         const watchResponse = await fetch('http://localhost:5000/watches');
         const watchData = await watchResponse.json();
@@ -158,6 +161,7 @@ const AdminPage = () => {
             <th>Price(Rs)</th>
             <th>Description</th>
             <th>Category</th>
+            <th>Available Items</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -169,6 +173,7 @@ const AdminPage = () => {
               <td>{item.price}</td>
               <td>{item.description}</td>
               <td>{item.category}</td>
+              <td>{item.available}</td>
               <td>
                 <button className="edit-button" onClick={() => handleEdit(item._id)}>Edit</button>
                 <button className="delete-button" onClick={() => confirmDelete(item._id)}>Delete</button>
@@ -194,7 +199,7 @@ const AdminPage = () => {
               <textarea id="description" name="description" value={editItem ? editItem.description : newItem.description} onChange={handleChange} required />
 
               <label htmlFor="category">Category:</label>
-              <select name="category" id="category" value={editItem ? editItem.category : newItem.category} onChange={handleChange}>
+              <select id="category" name="category" value={editItem ? editItem.category : newItem.category} onChange={handleChange}>
                 <option value="Apple Watch">Apple Watch</option>
                 <option value="Android Watch">Android Watch</option>
                 <option value="Mini Phone Watch">Mini Phone Watch</option>
@@ -205,22 +210,26 @@ const AdminPage = () => {
                 <option value="Calculator Watch">Calculator Watch</option>
               </select>
 
-              <label htmlFor="image">Image:</label>
-              <input type="file" id="image" name="image" accept="image/*" onChange={handleImageChange} />
+              <label htmlFor="available">Available Items:</label>
+              <input type="number" id="available" name="available" value={editItem ? editItem.available : newItem.available} onChange={handleChange} required />
 
-              <button type="submit" className="add-item-submit">{editItem ? 'Save Changes' : 'Add Item'}</button>
+              <label htmlFor="image">Image:</label>
+              <input type="file" id="image" name="image" onChange={handleImageChange} />
+
+              <button className="add-item-submit" type="submit">
+                {editItem ? 'Update Item' : 'Add Item'}
+              </button>
+
             </form>
           </div>
         </div>
       )}
 
       {showDeleteConfirmation && (
-        <div className="modal" onClick={handleCancelDelete}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <h3>Are you sure you want to delete this watch?</h3>
-            <button className="delete-confirm" onClick={handleDelete}>Yes</button>
-            <button className="delete-cancel" onClick={handleCancelDelete}>No</button>
-          </div>
+        <div className="delete-confirmation">
+          <p>Are you sure you want to delete this item?</p>
+          <button className="confirm-delete" onClick={handleDelete}>Yes</button>
+          <button className="cancel-delete" onClick={handleCancelDelete}>No</button>
         </div>
       )}
     </div>

@@ -115,6 +115,7 @@ button.delete-button:hover {
   border-radius: 8px;
   width: 400px;
   text-align: left;
+  margin-top: -20px;
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -159,7 +160,7 @@ select {
 
 textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 70px;
 }
 
 button.add-item-submit {
@@ -205,9 +206,10 @@ button.add-item-submit:hover {
 }
 
 h3 {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 700;
   margin-bottom: 20px;
+  color: #230cb7;
 }
 
 button.delete-confirm,
@@ -245,3 +247,53 @@ button.delete-cancel:hover {
   transition-duration: 0.2s;
   scale: 1.05;
 }
+/* The container that holds the confirmation message */
+.delete-confirmation {
+  position: fixed; /* Fixes the element on the screen */
+  top: 50%; /* Vertically centers the element */
+  left: 50%; /* Horizontally centers the element */
+  transform: translate(-50%, -50%); /* Adjusts the element's position to be exactly centered */
+  background-color: rgba(0, 0, 0, 0.7); /* Adds a semi-transparent background */
+  color: white; /* Sets text color to white */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow for better visibility */
+  z-index: 1000; /* Ensures the confirmation message stays on top of other content */
+  width: 300px; /* Width of the confirmation box */
+  text-align: center; /* Centers the text inside */
+}
+
+/* Style for the Yes button */
+.confirm-delete {
+  background-color: #28a745; /* Green color for the confirm button */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Hover effect for Yes button */
+.confirm-delete:hover {
+  background-color: #218838;
+}
+
+/* Style for the No button */
+.cancel-delete {
+  background-color: #dc3545; /* Red color for the cancel button */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Hover effect for No button */
+.cancel-delete:hover {
+  background-color: #c82333;
+}
+

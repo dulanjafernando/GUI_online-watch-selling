@@ -3,7 +3,7 @@ import './WatchItem.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 
-const WatchItem = ({ id, name, price, description, image, onAddToCart }) => {
+const WatchItem = ({ id, name, price, description, image, available, onAddToCart }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
   const [itemCount, setItemCount] = useState(cartItems[id] || 0); // Track the current item count
   const [isAdded, setIsAdded] = useState(cartItems[id] > 0); // Track if the item is in the cart
@@ -38,10 +38,10 @@ const WatchItem = ({ id, name, price, description, image, onAddToCart }) => {
 
     value = parseInt(value, 10);
 
-    // If the value exceeds 200, prevent further updates and show error
-    if (value > 200) {
-      setErrorMessage('You cannot exceed 200 item quantity');
-      setItemCount(200); // Automatically set to 200 when exceeding
+    // If the value exceeds the available stock, prevent further updates and show error
+    if (value > available) {
+      setErrorMessage(`You cannot exceed ${available} available items`);
+      setItemCount(available); // Automatically set to the available quantity
     } else {
       setErrorMessage('');
       setItemCount(value);
@@ -50,13 +50,13 @@ const WatchItem = ({ id, name, price, description, image, onAddToCart }) => {
 
   // Handle adding to cart
   const handleAddToCart = () => {
-    if (itemCount > 0 && itemCount <= 200) {
+    if (itemCount > 0 && itemCount <= available) {
       addToCart(id, itemCount); // Add to cart with selected item count
       setIsAdded(true);
       setAddedMessage('Added to Cart');
       onAddToCart(true); // Notify the parent (Navbar) that an item is added to the cart
-    } else if (itemCount > 200) {
-      setErrorMessage('You cannot exceed 200 item quantity');
+    } else if (itemCount > available) {
+      setErrorMessage(`You cannot exceed ${available} available items`);
     }
   };
 
@@ -71,11 +71,11 @@ const WatchItem = ({ id, name, price, description, image, onAddToCart }) => {
 
   // Increase item count
   const handleIncrease = () => {
-    if (!isAdded && itemCount < 200) {
+    if (!isAdded && itemCount < available) {
       setItemCount(prevCount => prevCount + 1);
       setErrorMessage('');
-    } else if (itemCount >= 200) {
-      setErrorMessage('You cannot exceed 200 item quantity');
+    } else if (itemCount >= available) {
+      setErrorMessage(`You cannot exceed ${available} available items`);
     }
   };
 
@@ -100,6 +100,11 @@ const WatchItem = ({ id, name, price, description, image, onAddToCart }) => {
         </div>
         <p className="watch-item-desc">{description}</p>
         <p className="watch-item-price">LKR {price}</p>
+
+        {/* Display available items */}
+        <p className="available-items">
+          Available {available} items only.
+        </p>
 
         {/* Item count controls with input and plus/minus buttons */}
         <div className="watch-item-counter">
@@ -137,7 +142,7 @@ const WatchItem = ({ id, name, price, description, image, onAddToCart }) => {
         <button
           onClick={isAdded ? handleRemoveFromCart : handleAddToCart}
           className="add-to-cart-button"
-          disabled={itemCount === 0 || itemCount > 200}
+          disabled={itemCount === 0 || itemCount > available}
         >
           {isAdded ? 'REMOVE FROM CART' : 'ADD TO CART'}
         </button>
