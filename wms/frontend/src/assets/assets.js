@@ -91,6 +91,7 @@ import cross_icon from './cross_icon.png'
 import selector_icon from './selector_icon.png'
 import rating_starts from './rating_starts.png'
 import profile_icon from './profile_icon.png'
+import menu_icon from './menu_icon.png'
 import bag_icon from './bag_icon.png'
 import logout_icon from './logout_icon.png'
 import parcel_icon from './parcel_icon.png'
@@ -130,6 +131,7 @@ export const assets = {
     app_store,
     play_store,
     linkedin_icon,
+    menu_icon,
     facebook_icon,
     twitter_icon,
     cross_icon,

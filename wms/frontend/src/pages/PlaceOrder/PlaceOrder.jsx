@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
-import './PlaceOrder.css'
-import { StoreContext } from '../../context/StoreContext'
+import React, { useContext } from 'react';
+import './PlaceOrder.css';
+import { StoreContext } from '../../context/StoreContext';
 
 // Import images using import statement
 import poBanner1 from '../../assets/po1.jpg';
-import poBanner2 from '../../assets/po2.jpg';
+import poBanner2 from '../../assets/Pay.gif';
 
 const PlaceOrder = () => {
   const { getTotalCartAmount } = useContext(StoreContext);
@@ -52,8 +52,16 @@ const PlaceOrder = () => {
 
         <div className="place-order-image-banner">
           <div className="image-row">
-            <img src={poBanner1} alt="Order Banner 1" className="place-order-image-small" />
-            <img src={poBanner2} alt="Order Banner 2" className="place-order-image-small" />
+            <img
+              src={poBanner1}
+              alt="Order Banner 1"
+              className="place-order-image-small banner1"
+            />
+            <img
+              src={poBanner2}
+              alt="Order Banner 2"
+              className="place-order-image-small banner2"
+            />
           </div>
         </div>
       </div>

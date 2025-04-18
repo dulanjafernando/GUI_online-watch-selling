@@ -5,7 +5,7 @@ import img1 from '../../assets/header_img1.jpg';
 import img2 from '../../assets/header_img2.gif';
 import img3 from '../../assets/header_img3.jpg';
 import img4 from '../../assets/header_img4.jpg';
-import img5 from '../../assets/header_img5.jpg';
+/*import img5 from '../../assets/header_img5.jpg';*/
 import img6 from '../../assets/header_img6.gif';
 import img7 from '../../assets/header_img7.jpg';
 import img8 from '../../assets/header_img8.jpg';
@@ -21,7 +21,7 @@ import img17 from '../../assets/header_img17.gif';
 import img18 from '../../assets/header_img18.gif';
 import img19 from '../../assets/header_img19.gif';
 
-const images = [img1, img18, img2,img17, img3, img4, img19, img15, img5, img6, img7, img16, img8,  img12, img9, img11, img10, img13, img14]; 
+const images = [img1, img18, img2,img17, img3, img4, img19, img15, img6, img7, img16, img8,  img12, img9, img11, img10, img13, img14]; 
 
 const Header = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

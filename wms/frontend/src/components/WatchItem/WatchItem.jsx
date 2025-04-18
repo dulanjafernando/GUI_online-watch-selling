@@ -5,147 +5,110 @@ import { StoreContext } from '../../context/StoreContext';
 
 const WatchItem = ({ id, name, price, description, image, available, onAddToCart }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
-  const [itemCount, setItemCount] = useState(cartItems[id] || 0); // Track the current item count
-  const [isAdded, setIsAdded] = useState(cartItems[id] > 0); // Track if the item is in the cart
-  const [errorMessage, setErrorMessage] = useState(''); // State for error message
-  const [addedMessage, setAddedMessage] = useState(''); // State for "Added to Cart" message
+  const [itemCount, setItemCount] = useState(cartItems[id] || 0);
+  const [isAdded, setIsAdded] = useState(cartItems[id] > 0);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [addedMessage, setAddedMessage] = useState('');
+
+  const isOutOfStock = available === 0;
 
   useEffect(() => {
     setItemCount(cartItems[id] || 0);
-    if (cartItems[id] > 0) {
-      setAddedMessage('Added to Cart');
-    } else {
-      setAddedMessage('');
-    }
-  }, [cartItems, id]); // Sync itemCount with cartItems state
+    setIsAdded(cartItems[id] > 0);
+    setAddedMessage(cartItems[id] > 0 ? 'Added to Cart' : '');
+  }, [cartItems, id]);
 
-  // Handle input changes for item count
   const handleInputChange = (e) => {
     let value = e.target.value;
+    if (value === '') return setItemCount(0);
+    if (!/^\d+$/.test(value)) return setErrorMessage('Please enter a valid number');
 
-    // If input is empty, set it to 0
-    if (value === '') {
-      setItemCount(0);
-      setErrorMessage('');
-      return;
-    }
-
-    // Allow only valid numbers
-    if (!/^\d+$/.test(value)) {
-      setErrorMessage('Please enter a valid number');
-      return; // Only allow numeric input
-    }
-
-    value = parseInt(value, 10);
-
-    // If the value exceeds the available stock, prevent further updates and show error
+    value = parseInt(value);
     if (value > available) {
       setErrorMessage(`You cannot exceed ${available} available items`);
-      setItemCount(available); // Automatically set to the available quantity
+      setItemCount(available);
     } else {
       setErrorMessage('');
       setItemCount(value);
     }
   };
 
-  // Handle adding to cart
   const handleAddToCart = () => {
     if (itemCount > 0 && itemCount <= available) {
-      addToCart(id, itemCount); // Add to cart with selected item count
+      addToCart(id, itemCount);
       setIsAdded(true);
       setAddedMessage('Added to Cart');
-      onAddToCart(true); // Notify the parent (Navbar) that an item is added to the cart
-    } else if (itemCount > available) {
-      setErrorMessage(`You cannot exceed ${available} available items`);
+      onAddToCart(true);
     }
   };
 
-  // Handle removing from cart
   const handleRemoveFromCart = () => {
-    removeFromCart(id); // Remove item from cart and set count to 0
-    setItemCount(0); // Reset the item count to 0 when removed
+    removeFromCart(id);
+    setItemCount(0);
     setIsAdded(false);
-    setAddedMessage(''); // Clear the "Added to Cart" message
-    onAddToCart(false); // Notify the parent (Navbar) that the item is removed from the cart
+    setAddedMessage('');
+    onAddToCart(false);
   };
 
-  // Increase item count
   const handleIncrease = () => {
     if (!isAdded && itemCount < available) {
-      setItemCount(prevCount => prevCount + 1);
+      setItemCount((prev) => prev + 1);
       setErrorMessage('');
-    } else if (itemCount >= available) {
-      setErrorMessage(`You cannot exceed ${available} available items`);
     }
   };
 
-  // Decrease item count
   const handleDecrease = () => {
     if (!isAdded && itemCount > 0) {
-      setItemCount(prevCount => prevCount - 1);
+      setItemCount((prev) => prev - 1);
       setErrorMessage('');
     }
   };
 
   return (
-    <div className='watch-item'>
-      <div className="watch-item-image-container">
-        <img className='watch-item-image' src={"http://localhost:5000" + image} alt={name} />
-        {isAdded && <div className="added-dot"></div>}
-      </div>
-      <div className="watch-item-info">
-        <div className="watch-item-name-rating">
-          <p>{name}</p>
-          <img src={assets.rating_starts} alt="rating" />
-        </div>
-        <p className="watch-item-desc">{description}</p>
-        <p className="watch-item-price">LKR {price}</p>
+    <div className="watch-card-wrapper">
+      {isOutOfStock && <div className="stock-tag out">Out of Stock</div>}
+      {!isOutOfStock && <div className="stock-tag in">In Stock</div>}
 
-        {/* Display available items */}
-        <p className="available-items">
-          Available {available} items only.
-        </p>
-
-        {/* Item count controls with input and plus/minus buttons */}
-        <div className="watch-item-counter">
-          <button
-            onClick={handleDecrease}
-            className="minus"
-            disabled={isAdded || itemCount === 0}
-          >
-            -
-          </button>
-          <input
-            type="text"
-            value={itemCount}
-            onChange={handleInputChange}
-            className="item-count-input"
-            placeholder="0"
-            disabled={isAdded} // Disable input if item is added
-          />
-          <button
-            onClick={handleIncrease}
-            className="plus"
-            disabled={isAdded}
-          >
-            +
-          </button>
+      <div className={`watch-card ${isOutOfStock ? 'disabled' : ''}`}>
+        <div className="watch-image-container">
+          <img src={`http://localhost:5000${image}`} alt={name} className="watch-image" />
+          {isAdded && <span className="added-indicator" />}
         </div>
 
-        {/* Error message for exceeding quantity */}
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <div className="watch-info">
+          <div className="watch-header">
+            <p className="watch-name">{name}</p>
+            <img src={assets.rating_starts} alt="rating" className="watch-rating" />
+          </div>
 
-        {/* Added to Cart Message */}
-        {addedMessage && <p className="added-message">{addedMessage}</p>}
+          <p className="watch-description">{description}</p>
+          <p className="watch-price">LKR {price}</p>
+          <p className="watch-stock">Available {available} items only.</p>
 
-        {/* Add/Remove from Cart Button */}
-        <button
-          onClick={isAdded ? handleRemoveFromCart : handleAddToCart}
-          className="add-to-cart-button"
-          disabled={itemCount === 0 || itemCount > available}
-        >
-          {isAdded ? 'REMOVE FROM CART' : 'ADD TO CART'}
-        </button>
+          <div className="watch-counter">
+            <button onClick={handleDecrease} disabled={isAdded || itemCount === 0 || isOutOfStock} className="counter-btn minus">-</button>
+            <input
+              type="text"
+              value={itemCount}
+              onChange={handleInputChange}
+              placeholder="0"
+              disabled={isAdded || isOutOfStock}
+              className="counter-input"
+            />
+            <button onClick={handleIncrease} disabled={isAdded || isOutOfStock} className="counter-btn plus">+</button>
+          </div>
+
+          {errorMessage && <p className="watch-error">{errorMessage}</p>}
+          {addedMessage && <p className="watch-success">{addedMessage}</p>}
+
+          <button
+            onClick={isAdded ? handleRemoveFromCart : handleAddToCart}
+            className={`watch-button ${isAdded ? 'remove' : 'add'}`}
+            disabled={itemCount === 0 || itemCount > available || isOutOfStock}
+          >
+            {isAdded ? 'REMOVE FROM CART' : 'ADD TO CART'}
+          </button>
+        </div>
       </div>
     </div>
   );

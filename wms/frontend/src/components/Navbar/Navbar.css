@@ -12,6 +12,72 @@
   z-index: 1000;
   animation: fadeInOut 2s forwards;
 }
+/* Existing styles ... (unchanged, see your code) */
+
+/* ↓↓↓ Additions and Modifications for mobile support ↓↓↓ */
+
+.menu-icon {
+  display: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  background-color: black;
+  width: 200px;
+  padding: 20px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar li {
+  list-style: none;
+  font-size: 18px;
+  color: #f0f0f2;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+@media (max-width: 1150px) {
+  .navbar .title p {
+    font-size: 18px;
+  }
+
+  .navbar .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navbar-item {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .navbar-right {
+    gap: 10px;
+  }
+
+  .navbar button {
+    display: none;
+  }
+}
+
 
 @keyframes fadeInOut {
   0% {
@@ -185,6 +251,10 @@
 
 /* Media Queries for Responsiveness */
 @media (max-width: 1050px) {
+  .navbar .title  p{
+    font-size: 20px;
+    margin-left: -10px;
+  }
   .navbar .logo {
     width: 50px;
     height: 50px;
@@ -206,6 +276,9 @@
 }
 
 @media (max-width: 900px) {
+  .navbar .title p{
+    font-size: 20px;
+  }
   .navbar .logo {
     width: 50px;
     height: 50px;
@@ -227,12 +300,37 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1150px) {
+  .navbar .title{
+    margin-left: -25px;
+  }
+  .navbar .title  p{
+    font-size: 24px;
+    margin-top: 15px;
+  }
   .navbar-item {
     display: none;
   }
 
   .navbar-right {
     gap: 10px;
+  }
+}
+@media (max-width: 450px) {
+  .navbar .title{
+    margin-left: -33px;
+  }
+  .navbar .title  p{
+    font-size: 24px;
+    margin-top: 15px;
+  }
+  .navbar-item {
+    display: none;
+  }
+
+  .navbar-right {
+    gap: 10px;
+    margin-left: 35px;
+    margin-top: 7px;
   }
 }

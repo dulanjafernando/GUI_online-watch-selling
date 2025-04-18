@@ -6,9 +6,10 @@ import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
   const [searchActive, setSearchActive] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { cartItems } = useContext(StoreContext);
   const [activeLink, setActiveLink] = useState('home');
-  const [addedToCart, setAddedToCart] = useState(false); 
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const cartItemCount = Object.values(cartItems).reduce((acc, count) => acc + count, 0);
 
@@ -18,13 +19,13 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
 
   const handleLinkClick = (linkName) => {
     setActiveLink(linkName);
+    setMenuOpen(false); // Close menu when a link is clicked
   };
 
-  
   const onAddToCart = (added) => {
     setAddedToCart(added);
     if (added) {
-      setTimeout(() => setAddedToCart(false), 2000); // Hide the notification after 2 seconds
+      setTimeout(() => setAddedToCart(false), 2000);
     }
   };
 
@@ -37,7 +38,6 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
         <p>EmrasWATCHFIT</p>
       </div>
 
-      {/* Render navigation links only if not admin */}
       {!isAdmin && (
         <ul className="navbar-item">
           <a href="/" onClick={() => handleLinkClick('home')}>
@@ -53,6 +53,24 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
             <li className={activeLink === 'contact' ? 'active' : ''}>Contact Us</li>
           </a>
         </ul>
+      )}
+
+      {/* Sidebar for small screens */}
+      {menuOpen && (
+        <div className="sidebar">
+          <a href="/" onClick={() => handleLinkClick('home')}>
+            <li className={activeLink === 'home' ? 'active' : ''}>Home</li>
+          </a>
+          <Link to="/about-us" onClick={() => handleLinkClick('aboutUs')}>
+            <li className={activeLink === 'aboutUs' ? 'active' : ''}>About Us</li>
+          </Link>
+          <a href="/#explore-it" onClick={() => handleLinkClick('items')}>
+            <li className={activeLink === 'items' ? 'active' : ''}>Items</li>
+          </a>
+          <a href="/#contact-us" onClick={() => handleLinkClick('contact')}>
+            <li className={activeLink === 'contact' ? 'active' : ''}>Contact Us</li>
+          </a>
+        </div>
       )}
 
       <div className="navbar-right">
@@ -80,10 +98,17 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
                 </div>
               </Link>
             </div>
+
+            {/* Hamburger Menu */}
+            <img
+              src={assets.menu_icon}
+              alt="Menu"
+              className="menu-icon"
+              onClick={() => setMenuOpen(!menuOpen)}
+            />
           </>
         )}
 
-        {/* Admin Controls */}
         {isAdmin ? (
           <>
             <Link to="/admin">
@@ -96,11 +121,8 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
         )}
       </div>
 
-      {/* Added to Cart notification */}
       {addedToCart && (
-        <div className="added-to-cart-notification">
-          Added to cart
-        </div>
+        <div className="added-to-cart-notification">Added to cart</div>
       )}
     </div>
   );

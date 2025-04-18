@@ -1,25 +1,29 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './AppDownload.css';
 import { assets } from '../../assets/assets';
 
 const AppDownload = () => {
-  // useEffect(() => {
-  //   // Scroll to the AppDownload section when the component is mounted or the link is clicked
-  //   const appDownloadSection = document.getElementById('app-download');
-  //   if (appDownloadSection) {
-  //     appDownloadSection.scrollIntoView({
-  //       behavior: 'smooth',
-  //       block: 'center',  // Scroll to the center of the screen
-  //     });
-  //   }
-  // }, []); // Empty array means this runs only once after the component mounts
-
   return (
-    <div className='app-download' id='app-download'>
-      <p>For better experience Download <br/> EmrasWATCHFIT App</p>
-      <div className="app-download-platforms">
-        <img src={assets.play_store} alt=""/>
-        <img src={assets.app_store} alt=""/>
+    <div className="app-download-wrapper" id="app-download">
+      <div className="app-download-content">
+        <div className="app-download-text">
+          <h2>Download Mobile App</h2>
+          <p>Mobile banking app for iOS & Android to manage your online money.</p>
+          <div className="store-buttons">
+            <button type="button" aria-label="googlePlayBtn">
+              <img src={assets.play_store} alt="Google Play" />
+            </button>
+            <button type="button" aria-label="appleStoreBtn">
+              <img src={assets.app_store} alt="Apple Store" />
+            </button>
+          </div>
+        </div>
+        <div className="app-download-image">
+          <img
+            src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/14053888/03._Galaxy_Watch_Active_Watchfaces__1_.gif?quality=90&strip=all"
+            alt="Excited Woman"
+          />
+        </div>
       </div>
     </div>
   );

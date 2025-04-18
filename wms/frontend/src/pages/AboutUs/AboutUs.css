@@ -8,6 +8,7 @@
     text-align: center;
     border-radius: 30px;
     margin-bottom: -40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 5);
   }
   
   .about-us-container {
@@ -181,7 +182,7 @@
     }
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 1150px) {
     .about-us-images {
       flex-direction: column;
       align-items: center;
