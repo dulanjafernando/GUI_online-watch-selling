@@ -122,6 +122,16 @@
   margin-top: -5px;
 }
 
+/* Red "No items available" message */
+.watch-stock.no-stock-msg {
+  color: red;
+  font-weight: 500;
+  font-size: 12px;
+  margin: -10px;
+  margin-left: 55px;
+  margin-top: -5px;
+}
+
 .watch-counter {
   display: flex;
   justify-content: center;

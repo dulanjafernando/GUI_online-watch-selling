@@ -83,7 +83,13 @@ const WatchItem = ({ id, name, price, description, image, available, onAddToCart
 
           <p className="watch-description">{description}</p>
           <p className="watch-price">LKR {price}</p>
-          <p className="watch-stock">Available {available} items only.</p>
+
+          {/* ✅ Updated stock message */}
+          {isOutOfStock ? (
+            <p className="watch-stock no-stock-msg">No items available now.</p>
+          ) : (
+            <p className="watch-stock">Available {available} items only.</p>
+          )}
 
           <div className="watch-counter">
             <button onClick={handleDecrease} disabled={isAdded || itemCount === 0 || isOutOfStock} className="counter-btn minus">-</button>

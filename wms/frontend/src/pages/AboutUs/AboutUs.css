@@ -207,3 +207,29 @@
     }
   }
   
+  @media (max-width: 450px) {
+    .about-us-images {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .about-us-image {
+      width: 80%;
+      height: auto;
+    }
+  
+    .about-us ul {
+      padding-left: 20px;
+    }
+  
+    .review-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .review-card {
+      margin-bottom: 20px;
+    }
+    
+  }
+  
