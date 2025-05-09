@@ -1,4 +1,5 @@
-/* Container for Watch Display */
+/* ========== Base Layout ========== */
+
 .watch-display {
   margin-top: 30px;
   padding: 0 40px;
@@ -8,45 +9,45 @@
   font-size: 45px;
   font-weight: 600;
   font-family: 'Times New Roman', Times, serif;
-  color: rgb(19, 19, 95);
+  color: #13135f;
   text-align: center;
 }
 
-/* Grid Layout for Watch Items */
+/* ========== Watch Grid ========== */
+
 .watch-display-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Default: 4 items */
-  margin-top: 40px;
+  grid-template-columns: repeat(4, 1fr);
   gap: 40px;
   row-gap: 50px;
+  margin-top: 40px;
   margin-left: -40px;
 }
 
-/* Pagination Controls */
+/* ========== Pagination ========== */
+
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin: 30px 0;
+  margin: 30px 0 7px;
   flex-wrap: wrap;
-  margin-top: 7px;
 }
 
-/* Arrow Buttons */
 .arrow {
   font-size: 30px;
-  cursor: pointer;
   padding: 10px 20px;
   border: none;
   background-color: #5755c6;
   color: white;
   border-radius: 50px;
-  transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .arrow:hover {
@@ -60,7 +61,6 @@
   box-shadow: none;
 }
 
-/* Page Buttons */
 .page-buttons {
   display: flex;
   gap: 8px;
@@ -71,15 +71,15 @@
 .page-button {
   width: 30px;
   height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: #f2f2f2;
   border: 1px solid #ccc;
   border-radius: 50%;
   font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s;
 }
 
 .page-button.active {
@@ -91,15 +91,149 @@
   background-color: #ddd;
 }
 
-/* Accessibility */
 .page-button:focus {
   outline: 2px solid #6455c6;
   outline-offset: 4px;
 }
 
-/* ================= Responsive Layout ================= */
+/* ========== Filters Button ========== */
 
-/* 1450px and below — show 3 items */
+.filters-btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 10px;
+}
+
+.filters-btn {
+  padding: 14px 30px;
+  font-size: 17px;
+  font-weight: 600;
+  background-color: #1e4dd8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.filters-btn:hover {
+  background-color: #1038a2;
+}
+
+/* ========== Modal: Filter Popup ========== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 30px 25px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-content h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #16025c;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.modal-content .filter-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 15px;
+  color: #222;
+}
+
+.modal-content .filter-item label {
+  font-weight: 500;
+}
+
+.modal-content .filter-item input,
+.modal-content .filter-item select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+.modal-content .filter-item input:focus,
+.modal-content .filter-item select:focus {
+  border-color: #3e3d9a;
+  background-color: #fff;
+  outline: none;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* ========== Instruction Message ========== */
+.filter-instruction {
+  font-size: 15px;
+  color: #1e4dd8;
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+
+.apply-button {
+  padding: 12px 24px;
+  background-color: #1e4dd8;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+  background-color: #1038a2;
+}
+
+.cancel-button {
+  padding: 12px 20px;
+  background-color: #999;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #777;
+}
+
+/* ========== Responsive Layout ========== */
+
 @media (max-width: 1450px) {
   .watch-display-list {
     grid-template-columns: repeat(3, 1fr);
@@ -111,10 +245,9 @@
   }
 }
 
-/* 1150px and below — keep 3 items, shrink sizes */
 @media (max-width: 1150px) {
   .watch-display {
-    padding: 0 30px;  
+    padding: 0 30px;
   }
 
   .watch-display-list {
@@ -140,7 +273,6 @@
   }
 }
 
-/* 950px and below — show 2 items */
 @media (max-width: 950px) {
   .watch-display {
     padding: 0 20px;
@@ -169,7 +301,6 @@
   }
 }
 
-/* 750px and below — show 1 item per row */
 @media (max-width: 790px) {
   .watch-display {
     padding: 0 15px;
@@ -179,7 +310,7 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
     row-gap: 30px;
-    margin-left:-1px;
+    margin-left: 0;
   }
 
   .watch-display h2 {
@@ -199,5 +330,10 @@
 
   .pagination {
     gap: 15px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 20px 15px;
   }
 }

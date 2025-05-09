@@ -296,4 +296,24 @@ button.delete-cancel:hover {
 .cancel-delete:hover {
   background-color: #c82333;
 }
+.sorting-filtering {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.sort-options label,
+.filter-options label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.sort-options select,
+.filter-options select {
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
 

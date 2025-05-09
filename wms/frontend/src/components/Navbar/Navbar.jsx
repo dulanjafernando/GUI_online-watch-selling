@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
@@ -12,14 +12,26 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
   const [addedToCart, setAddedToCart] = useState(false);
 
   const cartItemCount = Object.values(cartItems).reduce((acc, count) => acc + count, 0);
+  const navigate = useNavigate();
 
   const handleSearchClick = () => {
     setSearchActive(!searchActive);
   };
 
-  const handleLinkClick = (linkName) => {
+  const handleLinkClick = (linkName, path, isAnchor = false) => {
     setActiveLink(linkName);
-    setMenuOpen(false); // Close menu when a link is clicked
+    setMenuOpen(false);
+    if (isAnchor) {
+      const element = document.getElementById(path);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // If not on home page, go to home page and then scroll
+        navigate(`/#${path}`);
+      }
+    } else {
+      navigate(path);
+    }
   };
 
   const onAddToCart = (added) => {
@@ -32,44 +44,68 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
   return (
     <div className="navbar">
       <div className="title">
-        <a href="/">
+        <Link to="/" onClick={() => handleLinkClick('home', '/')}>
           <img src={assets.logo} alt="Logo" className="logo" />
-        </a>
+        </Link>
         <p>EmrasWATCHFIT</p>
       </div>
 
       {!isAdmin && (
         <ul className="navbar-item">
-          <a href="/" onClick={() => handleLinkClick('home')}>
-            <li className={activeLink === 'home' ? 'active' : ''}>Home</li>
-          </a>
-          <Link to="/about-us" onClick={() => handleLinkClick('aboutUs')}>
-            <li className={activeLink === 'aboutUs' ? 'active' : ''}>About Us</li>
-          </Link>
-          <a href="/#explore-it" onClick={() => handleLinkClick('items')}>
-            <li className={activeLink === 'items' ? 'active' : ''}>Items</li>
-          </a>
-          <a href="/#contact-us" onClick={() => handleLinkClick('contact')}>
-            <li className={activeLink === 'contact' ? 'active' : ''}>Contact Us</li>
-          </a>
+          <li
+            className={activeLink === 'home' ? 'active' : ''}
+            onClick={() => handleLinkClick('home', '/')}
+          >
+            Home
+          </li>
+          <li
+            className={activeLink === 'aboutUs' ? 'active' : ''}
+            onClick={() => handleLinkClick('aboutUs', '/about-us')}
+          >
+            About Us
+          </li>
+          <li
+            className={activeLink === 'items' ? 'active' : ''}
+            onClick={() => handleLinkClick('items', 'explore-it', true)}
+          >
+            Items
+          </li>
+          <li
+            className={activeLink === 'contact' ? 'active' : ''}
+            onClick={() => handleLinkClick('contact', 'contact-us', true)}
+          >
+            Contact Us
+          </li>
         </ul>
       )}
 
       {/* Sidebar for small screens */}
       {menuOpen && (
         <div className="sidebar">
-          <a href="/" onClick={() => handleLinkClick('home')}>
-            <li className={activeLink === 'home' ? 'active' : ''}>Home</li>
-          </a>
-          <Link to="/about-us" onClick={() => handleLinkClick('aboutUs')}>
-            <li className={activeLink === 'aboutUs' ? 'active' : ''}>About Us</li>
-          </Link>
-          <a href="/#explore-it" onClick={() => handleLinkClick('items')}>
-            <li className={activeLink === 'items' ? 'active' : ''}>Items</li>
-          </a>
-          <a href="/#contact-us" onClick={() => handleLinkClick('contact')}>
-            <li className={activeLink === 'contact' ? 'active' : ''}>Contact Us</li>
-          </a>
+          <li
+            className={activeLink === 'home' ? 'active' : ''}
+            onClick={() => handleLinkClick('home', '/')}
+          >
+            Home
+          </li>
+          <li
+            className={activeLink === 'aboutUs' ? 'active' : ''}
+            onClick={() => handleLinkClick('aboutUs', '/about-us')}
+          >
+            About Us
+          </li>
+          <li
+            className={activeLink === 'items' ? 'active' : ''}
+            onClick={() => handleLinkClick('items', 'explore-it', true)}
+          >
+            Items
+          </li>
+          <li
+            className={activeLink === 'contact' ? 'active' : ''}
+            onClick={() => handleLinkClick('contact', 'contact-us', true)}
+          >
+            Contact Us
+          </li>
         </div>
       )}
 
@@ -99,7 +135,6 @@ const Navbar = ({ setShowLogin, isAdmin, handleLogout }) => {
               </Link>
             </div>
 
-            {/* Hamburger Menu */}
             <img
               src={assets.menu_icon}
               alt="Menu"

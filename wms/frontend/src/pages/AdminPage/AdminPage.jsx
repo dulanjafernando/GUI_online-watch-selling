@@ -15,6 +15,8 @@ const AdminPage = () => {
   const [editItem, setEditItem] = useState(null);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
+  const [sortOrder, setSortOrder] = useState('');
+  const [priceRange, setPriceRange] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:5000/watches')
@@ -37,7 +39,7 @@ const AdminPage = () => {
     try {
       const response = await fetch(`http://localhost:5000/delete-watches/${itemToDelete}`, { method: 'DELETE' });
       if (response.ok) {
-        setWatchList(prevState => prevState.filter(item => item._id !== itemToDelete));  // Filter out the deleted item from the list
+        setWatchList(prevState => prevState.filter(item => item._id !== itemToDelete));
         alert('Watch deleted successfully');
         setShowDeleteConfirmation(false);
         setItemToDelete(null);
@@ -148,11 +150,57 @@ const AdminPage = () => {
     }
   };
 
+  const handleSortChange = (order) => {
+    setSortOrder(order);
+  };
+
+  const handlePriceRangeChange = (range) => {
+    setPriceRange(range);
+  };
+
+  const filteredAndSortedList = [...watchList]
+    .filter((item) => {
+      if (!priceRange) return true;
+      const price = parseFloat(item.price);
+      const [min, max] = priceRange.split('-');
+      if (priceRange === '100000+') return price > 100000;
+      return price >= parseFloat(min) && price <= parseFloat(max);
+    })
+    .sort((a, b) => {
+      if (sortOrder === 'low') return a.price - b.price;
+      if (sortOrder === 'high') return b.price - a.price;
+      return 0;
+    });
+
   return (
     <div className="admin-page">
       <h2>Admin Panel - Watches List</h2>
       <button className="add-item-button" onClick={() => setShowModal(true)}>Add Item</button>
 
+      {/* Sort & Filter Controls */}
+      <div className="sorting-filtering">
+        <div className="sort-options">
+          <label>Sort by Price:</label>
+          <select onChange={(e) => handleSortChange(e.target.value)}>
+            <option value="">-- Select --</option>
+            <option value="low">Low to High</option>
+            <option value="high">High to Low</option>
+          </select>
+        </div>
+        <div className="filter-options">
+          <label>Filter by Price Range:</label>
+          <select onChange={(e) => handlePriceRangeChange(e.target.value)}>
+            <option value="">-- All Prices --</option>
+            <option value="0-5000">Rs0 - Rs5000</option>
+            <option value="5000-20000">Rs5000 - Rs20000</option>
+            <option value="20000-50000">Rs20000 - Rs50000</option>
+            <option value="50000-100000">Rs50000 - Rs100000</option>
+            <option value="100000+">Over Rs100000</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Table */}
       <table className="admin-page-table">
         <thead>
           <tr>
@@ -166,7 +214,7 @@ const AdminPage = () => {
           </tr>
         </thead>
         <tbody>
-          {watchList.map(item => (
+          {filteredAndSortedList.map(item => (
             <tr key={item._id}>
               <td><img src={`http://localhost:5000${item.image}`} alt={item.name} className="table-image" /></td>
               <td>{item.name}</td>
@@ -183,6 +231,7 @@ const AdminPage = () => {
         </tbody>
       </table>
 
+      {/* Modal */}
       {showModal && (
         <div className="modal" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -219,7 +268,6 @@ const AdminPage = () => {
               <button className="add-item-submit" type="submit">
                 {editItem ? 'Update Item' : 'Add Item'}
               </button>
-
             </form>
           </div>
         </div>
