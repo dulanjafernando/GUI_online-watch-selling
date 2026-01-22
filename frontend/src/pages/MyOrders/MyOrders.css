@@ -1,0 +1,383 @@
+.my-orders-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 200px);
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.my-orders-content {
+  width: 100%;
+  max-width: 1000px;
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.my-orders-content h1 {
+  color: #003d82;
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.no-orders {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.no-orders p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.shop-button {
+  background: linear-gradient(to right, #003d82, #005ba8);
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.shop-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 61, 130, 0.4);
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.order-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.order-header {
+  background: #f9f9f9;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+
+.order-header:hover {
+  background: #f0f0f0;
+}
+
+.order-info h3 {
+  color: #003d82;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.order-date {
+  color: #999;
+  font-size: 14px;
+}
+
+.order-summary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.order-status {
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.order-total {
+  font-weight: 700;
+  color: #003d82;
+  font-size: 18px;
+}
+
+.order-action {
+  min-width: 130px;
+}
+
+.view-details-btn,
+.view-less-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.view-details-btn {
+  background: linear-gradient(to right, #003d82, #005ba8);
+  color: white;
+}
+
+.view-details-btn:hover {
+  background: linear-gradient(to right, #002d62, #004a88);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 61, 130, 0.3);
+}
+
+.view-less-btn {
+  background: #f44336;
+  color: white;
+}
+
+.view-less-btn:hover {
+  background: #da190b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.order-details {
+  padding: 30px;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+}
+
+.delivery-section,
+.items-section {
+  margin-bottom: 30px;
+}
+
+.delivery-section h4,
+.items-section h4 {
+  color: #003d82;
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.delivery-info {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.delivery-info p {
+  margin: 8px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+.items-table {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.items-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background: #003d82;
+  color: white;
+  padding: 12px 15px;
+  font-weight: 600;
+  gap: 15px;
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 15px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.item-row:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  color: #333;
+  font-weight: 500;
+}
+
+.order-total-section {
+  background: #f9f9f9;
+  padding: 20px 15px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
+}
+
+.total-row.savings span:last-child {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+.total-row.final {
+  border-top: 2px solid #e0e0e0;
+  padding-top: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #003d82;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .my-orders-content {
+    padding: 20px;
+  }
+
+  .my-orders-content h1 {
+    font-size: 24px;
+  }
+
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .order-summary {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .order-action {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .view-details-btn,
+  .view-less-btn {
+    width: 100%;
+  }
+
+  .items-header,
+  .item-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .items-header span:nth-child(n+3),
+  .item-row span:nth-child(n+3) {
+    display: none;
+  }
+
+  .status-timeline {
+    flex-wrap: wrap;
+  }
+
+  .timeline-item {
+    flex: 0 1 calc(50% - 10px);
+  }
+}
+
+/* Status Timeline Styles */
+.status-timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 30px 0;
+  padding: 20px;
+  background: #f8f9fb;
+  border-radius: 8px;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.timeline-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  border: 2px solid #999;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #666;
+  font-size: 12px;
+}
+
+.timeline-circle.active {
+  background: #4CAF50;
+  border-color: #45a049;
+  color: white;
+}
+
+.timeline-label {
+  font-size: 12px;
+  text-align: center;
+  color: #666;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  word-break: break-word;
+}
+
+.timeline-label.active {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+.timeline-line {
+  position: absolute;
+  height: 2px;
+  background: #e0e0e0;
+  top: 15px;
+  left: calc(50% + 20px);
+  width: calc((100% - 40px) / 1);
+  transition: all 0.3s ease;
+}
+
+.timeline-line.completed {
+  background: #4CAF50;
+}
+
+.cancelled-order-notice {
+  background: #ffebee;
+  border: 2px solid #f44336;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.cancelled-order-notice p {
+  color: #f44336;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0;
+}
