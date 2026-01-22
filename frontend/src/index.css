@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root{
+  --white :#ffffff;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family:Outfit ;
+  scroll-behavior: smooth;
+}
+
+body{
+  min-height: 100vh;
+  background-color:white;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.app{
+  width: 80%;
+  margin: auto;
+}
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+/* Toast Notification Styles */
+.Toastify__toast-container {
+  width: auto;
+  max-width: 400px;
+  top: 80px !important;
+  right: 20px !important;
+  padding: 0;
+  left: auto !important;
+}
+
+.Toastify__toast {
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.Toastify__toast--success {
+  background: #4CAF50;
+}
+
+.Toastify__toast--error {
+  background: #f44336;
+}
+
+.Toastify__toast--info {
+  background: #2196F3;
+}
+
+.Toastify__toast--warning {
+  background: #FF9800;
+}
+
+.Toastify__toast-icon {
+  margin-right: 12px;
+}

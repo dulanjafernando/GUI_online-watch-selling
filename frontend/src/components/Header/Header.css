@@ -1,0 +1,238 @@
+/* Header container styling */
+.header {
+    position: relative;
+    margin-top: 100px;
+    width: 100%;
+    height:37vw ; /* Responsive height */
+    margin: 30px auto;
+    overflow: hidden; /* Hide parts of the image that exceed the container */
+    margin-top: 115px;
+   /* border: 3px solid black;*/
+    border-radius: 13px;
+    padding: 0px;
+    box-shadow: 10px 14px 25px rgba(0, 0, 0, 1.1);
+    
+  }
+  
+  .header-image-container {
+    /*width: 100%;
+    height: 100%;
+    padding-top: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;*/
+    width: 100%;
+    height: 100%; /* Increase the height to 500px */
+    padding-top: -160px;
+    
+    top: -10px;
+    left: 0;
+    overflow: hidden;
+  }
+  
+  .header_image {
+    width: 100%;
+    height: 100%;
+    padding-top: 0px;
+    border-radius: 10px;
+    object-fit: cover; /* Ensure the image covers the area of the container */
+    transition: linear; /* Smooth transition effect for image change */
+    transition-duration: 1.5s;
+  }
+  
+  .header-contents {
+    /*position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1vw;
+    max-width: 50%;
+    align-items: 50%;
+    
+    
+    bottom: 10%;
+    left: 6vw;
+    animation: fadeIn 3s;
+    margin-bottom: -170px;*/
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1vw;
+    max-width: 50%;
+    top: 45%; /* Position from the top 10% of the container */
+    left: 6vw; /* Adjust as necessary */
+    animation: fadeIn 4s;
+    
+}
+.header-contents h2 {
+    font-weight: 1200;
+    color: aqua;
+    font-size: max(2.5vw, 22px);
+  }
+  
+  .header-contents p {
+    font-size: 1vw;
+    color: white;
+    font-weight: 800;
+  }
+  
+  .header-contents button {
+    border: none;
+    color: indigo;
+    font-weight: 1000;
+    padding: 1vw 2.3vw;
+    background-color: aqua;
+    font-size: max(1vw, 13px);
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  
+  .header-contents button:hover {
+    background-color: aqua;
+    transition: 0.5s;
+    transform: scale(1.1);
+  }
+  
+  /* Media query for larger screens */
+  /* 1450px and below */
+@media (max-width: 1450px) {
+  .header {
+    height: 40vw;
+  }
+
+  .header-contents {
+    max-width: 55%;
+  }
+
+  .header-contents h2 {
+    font-size: max(2.2vw, 20px);
+  }
+
+  .header-contents p {
+    font-size: 1.1vw;
+  }
+
+  .header-contents button {
+    font-size: max(1.2vw, 13px);
+  }
+}
+
+/* 1150px and below */
+@media (max-width: 1150px) {
+  .header {
+    height: 42vw;
+  }
+
+  .header-contents {
+    max-width: 60%;
+  }
+
+  .header-contents h2 {
+    font-size: max(2vw, 18px);
+  }
+
+  .header-contents p {
+    font-size: 1.2vw;
+  }
+
+  .header-contents button {
+    padding: 1.2vw 2.5vw;
+  }
+}
+
+/* 950px and below */
+@media (max-width: 950px) {
+  .header {
+    height: 44vw;
+  }
+
+  .header-contents {
+    max-width: 65%;
+  }
+
+  .header-contents h2 {
+    font-size: max(1.8vw, 16px);
+  }
+
+  .header-contents p {
+    font-size: 1.4vw;
+  }
+
+  .header-contents button {
+    padding: 1.4vw 2.7vw;
+  }
+}
+
+/* 750px and below */
+@media (max-width: 750px) {
+  .header {
+    height: auto;
+  }
+
+  .header-contents {
+    max-width: 85%;
+    top: 50%;
+    gap: 0px;
+    transform: translateY(-50%);
+  }
+
+  .header-contents h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .header-contents p {
+    display: none;
+  }
+
+  .header-contents button {
+    padding: 2vw 4vw;
+    margin-bottom: -140px;
+  }
+}
+
+/* 450px and below */
+@media (max-width: 630px) {
+  .header-image-container{
+    margin-top: 36px;
+  }
+  .header {
+    height: auto;
+    border-radius: 10px;
+    margin: 20px auto;
+    box-shadow: 5px 8px 15px rgba(0, 0, 0, 0.8);
+    margin-bottom: 90px;
+  }
+
+  .header-contents {
+    max-width: 90%;
+    top: 75%;
+    left: 5vw;
+    transform: translateY(-50%);
+    gap: 4vw;
+  }
+
+  .header-contents h2 {
+    font-size: 18px;
+    margin-bottom: -5px;
+    line-height: 1.3;
+  }
+
+  .header-contents p {
+    display: none;
+  }
+
+  .header-contents button {
+    padding: 3vw 6vw;
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .header_image {
+    border-radius: 8px;
+  }
+}
+
+  
